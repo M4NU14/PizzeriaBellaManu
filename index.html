@@ -1,17 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizzeria BellaManu</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pizzeria BELLA MANU a Fondi: pizza e passione italiana.">
+  <meta name="theme-color" content="#173d2d">
+  <title>Pizzeria BELLA MANU | Fondi</title>
+  <style>
+    :root{--green:#173d2d;--cream:#fff8eb;--red:#d94835;--ink:#20231f;--muted:#6c716a}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}a{color:inherit;text-decoration:none}
+    .topbar{background:var(--green);color:white;text-align:center;padding:8px 16px;font-size:.84rem;letter-spacing:.06em}
+    header{background:var(--cream);position:sticky;top:0;z-index:10;border-bottom:1px solid #e7dfd1}.nav{max-width:1160px;margin:auto;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;color:var(--green)}.mark{width:44px;height:44px;border:2px solid var(--red);border-radius:50%;display:grid;place-items:center;font-size:1.4rem}.brandname{font-family:Georgia,serif;font-weight:bold;letter-spacing:.08em;line-height:1.1}.brandname small{display:block;font:700 .62rem Arial,sans-serif;letter-spacing:.2em;margin-top:5px}.links{display:flex;gap:24px;font-size:.92rem;font-weight:bold}.links a:hover{color:var(--red)}.btn{display:inline-block;background:var(--red);border:2px solid var(--red);color:#fff;padding:12px 19px;border-radius:5px;font-weight:bold;letter-spacing:.03em}.btn:hover{background:#bd3928;border-color:#bd3928}
+    .hero{min-height:590px;display:flex;align-items:center;color:white;background:linear-gradient(90deg,rgba(10,25,17,.88),rgba(10,25,17,.56) 55%,rgba(10,25,17,.12)),url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1900&q=85') center/cover}.hero-inner{max-width:1160px;width:100%;margin:auto;padding:75px 22px}.eyebrow{text-transform:uppercase;color:#f2c4a2;font-size:.78rem;letter-spacing:.2em;font-weight:bold}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;line-height:1.12}h1{font-size:clamp(2.8rem,6vw,5.2rem);max-width:690px;margin:20px 0}.hero p{font-size:1.12rem;max-width:530px;color:#f2f2ed;margin-bottom:28px}.section{max-width:1160px;margin:auto;padding:78px 22px}.heading{text-align:center;max-width:700px;margin:0 auto 38px}.heading .eyebrow,.about .eyebrow{color:var(--red)}h2{font-size:clamp(2rem,4vw,3.1rem);color:var(--green);margin:12px 0}.heading p,.feature p,.menu-card p,.about p{color:var(--muted)}.features,.menu-grid,.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.feature{padding:28px;background:#fffdf7;border:1px solid #eee5d6;border-radius:9px;text-align:center}.icon{font-size:2rem}.feature h3,.contact-card h3{color:var(--green);font-size:1.35rem;margin:13px 0 8px}.feature p{margin:0}.menu-section{background:#f1e9da}.menu-card{background:var(--cream);border-radius:9px;overflow:hidden}.menu-card img{width:100%;height:210px;object-fit:cover;display:block}.menu-card div{padding:21px}.menu-card h3{font-size:1.4rem;color:var(--green);margin:0 0 8px}.menu-card p{margin:0;font-size:.94rem}.note{text-align:center;color:var(--muted);font-size:.88rem;margin-top:24px}.about{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:46px}.about img{width:100%;height:390px;object-fit:cover;border-radius:10px}.about p{margin:18px 0}.contact-section{background:var(--green);color:#fff}.contact-section h2{color:white}.contact-section .heading p{color:#d8e0d9}.contact-card{border:1px solid #ffffff35;border-radius:8px;padding:25px;text-align:center}.contact-card h3{color:white}.contact-card p{color:#d8e0d9;margin:0}footer{background:#10291e;color:#cbd5ce;text-align:center;padding:24px;font-size:.86rem}footer strong{color:white}.mobile-cta{display:none}
+    @media(max-width:800px){.nav{flex-wrap:wrap}.links{order:3;width:100%;justify-content:center;gap:17px;flex-wrap:wrap}.nav>.btn{padding:9px 12px;font-size:.82rem}.hero{min-height:530px;background-position:60% center}.features,.menu-grid,.contact-grid{grid-template-columns:1fr}.about{grid-template-columns:1fr;gap:25px}.about img{height:300px}.section{padding:58px 20px}}
+    @media(max-width:480px){.brandname{font-size:.95rem}.mark{width:39px;height:39px}.links{font-size:.82rem;gap:13px}.nav>.btn{display:none}.hero{min-height:500px}.hero p{font-size:1rem}.mobile-cta{display:block;position:fixed;bottom:12px;left:12px;right:12px;text-align:center;z-index:20;box-shadow:0 10px 30px #0003}footer{padding-bottom:82px}}
+  </style>
 </head>
 <body>
-    <nav>
-        <h1 id="titolo">Pizzeria BELLA MANU</h1>
-        <a href="menu/menupizze.html">Menu Pizza</a>
-        <a href="menu/menubibite.html"> Menu Bibite</a>
-        <a href="menu/menudolci.html">Menu Dolci</a>
-    </nav>
+  <div class="topbar">PIZZERIA BELLA MANU · FONDI</div>
+  <header><nav class="nav" aria-label="Navigazione principale">
+    <a class="brand" href="#home"><span class="mark">🍕</span><span class="brandname">BELLA MANU<small>PIZZERIA · FONDI</small></span></a>
+    <div class="links"><a href="#home">Home</a><a href="#menu">Il menu</a><a href="#pizzeria">La pizzeria</a><a href="#contatti">Contatti</a></div>
+    <a class="btn" href="#contatti">CONTATTACI</a>
+  </nav></header>
+  <main>
+    <section class="hero" id="home"><div class="hero-inner"><span class="eyebrow">Il piacere della tradizione italiana</span><h1>Il gusto autentico della pizza.</h1><p>Ingredienti scelti, profumi irresistibili e tanta passione. Ti aspettiamo da Pizzeria BELLA MANU, a Fondi.</p><a class="btn" href="#menu">SCOPRI IL MENU</a></div></section>
+    <section class="section"><div class="heading"><span class="eyebrow">La nostra passione</span><h2>Semplicemente buona.</h2><p>La pizza è un momento da condividere, fatto di sapori genuini e convivialità.</p></div><div class="features">
+      <article class="feature"><div class="icon">🌿</div><h3>Ingredienti scelti</h3><p>Il sapore comincia dalla qualità degli ingredienti e dalla cura di ogni dettaglio.</p></article>
+      <article class="feature"><div class="icon">🍕</div><h3>Arte della pizza</h3><p>Ogni pizza nasce dalla passione per una tradizione tutta italiana.</p></article>
+      <article class="feature"><div class="icon">❤️</div><h3>Passione italiana</h3><p>Un posto dove ritrovarsi, stare insieme e godersi qualcosa di buono.</p></article>
+    </div></section>
+    <section class="menu-section" id="menu"><div class="section"><div class="heading"><span class="eyebrow">Una bontà da scoprire</span><h2>Il nostro menu</h2><p>Personalizza queste proposte con le pizze e i prezzi reali della pizzeria.</p></div><div class="menu-grid">
+      <article class="menu-card"><img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80" alt="Pizza con basilico" loading="lazy"><div><h3>La Margherita</h3><p>Pomodoro, mozzarella, basilico e un filo d'olio.</p></div></article>
+      <article class="menu-card"><img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=900&q=80" alt="Pizza appena sfornata" loading="lazy"><div><h3>La Classica</h3><p>Una combinazione di sapori tradizionali, perfetta per ogni occasione.</p></div></article>
+      <article class="menu-card"><img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=900&q=80" alt="Pizza artigianale" loading="lazy"><div><h3>La Speciale</h3><p>Scopri le specialità della casa e gli ingredienti di stagione.</p></div></article>
+    </div><p class="note">Le pizze e le descrizioni sono esempi: sostituiscile con il menu effettivo.</p></div></section>
+    <section class="section about" id="pizzeria"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=85" alt="Pizza italiana appena preparata" loading="lazy"><div><span class="eyebrow">Benvenuti da noi</span><h2>Una pizza, mille momenti da condividere.</h2><p>Una serata in famiglia, una cena tra amici o una pausa sfiziosa: BELLA MANU vuole essere il posto giusto per gustare la pizza e stare in buona compagnia.</p><p>Vieni a trovarci a Fondi: saremo felici di accoglierti!</p><a class="btn" href="#contatti">INFO E CONTATTI</a></div></section>
+    <section class="contact-section" id="contatti"><div class="section"><div class="heading"><span class="eyebrow">Ti aspettiamo</span><h2>Vieni a trovarci</h2><p>Completa i dati di contatto prima di pubblicare il sito.</p></div><div class="contact-grid">
+      <article class="contact-card"><div class="icon">📍</div><h3>Dove siamo</h3><p>Fondi (LT)<br>Inserisci l'indirizzo completo</p></article>
+      <article class="contact-card"><div class="icon">📞</div><h3>Chiamaci</h3><p>Inserisci il numero della pizzeria</p></article>
+      <article class="contact-card"><div class="icon">🕒</div><h3>Orari</h3><p>Inserisci giorni e orari di apertura</p></article>
+    </div></div></section>
+  </main>
+  <a class="btn mobile-cta" href="#contatti">CONTATTI E PRENOTAZIONI</a>
+  <footer><strong>PIZZERIA BELLA MANU</strong> · Fondi (LT)<br>© <span id="year"></span> Bella Manu. Tutti i diritti riservati.</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

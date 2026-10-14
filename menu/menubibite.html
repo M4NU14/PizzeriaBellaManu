@@ -73,6 +73,19 @@
             backdrop-filter: blur(16px);
         }
 
+        .product-panel--image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-panel--image img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .add-mark {
             display: grid;
             width: 44px;
@@ -131,8 +144,8 @@
             <article class="product-panel" aria-label="Spazio per un prodotto">
                 <span class="add-mark" aria-hidden="true">+</span>
             </article>
-            <article class="product-panel" aria-label="Spazio per un prodotto">
-                <span class="add-mark" aria-hidden="true">+</span>
+            <article class="product-panel product-panel--image" aria-label="Coca-Cola">
+                <img src="cocacola.jpg" alt="Bottiglia di Coca-Cola">
             </article>
         </section>
     </main>

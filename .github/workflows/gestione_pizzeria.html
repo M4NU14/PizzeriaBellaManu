@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pizzeria — Gestione</title>
+<style>
+:root{--red:#c94335;--dark:#252525;--cream:#fffaf3;--muted:#777;--line:#eee5da;--green:#2e7d52}
+*{box-sizing:border-box}body{margin:0;background:#f6f2ec;color:var(--dark);font-family:Arial,Helvetica,sans-serif}
+header{background:var(--dark);color:white;padding:22px 5vw;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}.logo{font-size:32px}.brand h1{font-size:22px;margin:0}.brand p{margin:4px 0 0;color:#d5d0ca;font-size:13px}
+.header-date{font-size:13px;color:#eee}
+main{max-width:1200px;margin:26px auto;padding:0 20px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.stat,.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:19px;box-shadow:0 3px 12px #30200b08}
+.stat span{font-size:13px;color:var(--muted)}.stat strong{display:block;font-size:28px;margin-top:8px}.stat small{color:var(--muted)}
+.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.panel h2{font-size:18px;margin:0 0 16px}
+form{display:grid;gap:12px}label{font-size:13px;font-weight:700;display:grid;gap:6px}
+input,select,button{font:inherit}input,select{width:100%;border:1px solid #ddd3c8;border-radius:8px;padding:11px;background:white;color:var(--dark)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{border:0;border-radius:8px;padding:11px 14px;cursor:pointer;font-weight:700}.primary{background:var(--red);color:white}.primary:hover{background:#ac3529}.soft{background:#f5eee6;color:#4b4037}
+.menu-list{display:grid;gap:10px}.menu-item{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.menu-item:last-child{border-bottom:0}.menu-item b{display:block;font-size:14px}.menu-item small{color:var(--muted)}.price{font-weight:700;white-space:nowrap}
+.orders-panel{margin-top:18px}.orders-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.filters{display:flex;gap:8px;flex-wrap:wrap}.filters select{width:auto;padding:8px}
+.order-list{display:grid;gap:10px}.order{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.order h3{margin:0 0 5px;font-size:15px}.order p{margin:3px 0;color:var(--muted);font-size:13px}.order-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}.order-actions select{width:auto;padding:8px;font-size:13px}.tag{display:inline-block;border-radius:99px;padding:4px 8px;font-size:11px;font-weight:700;background:#f5eee6}.empty{color:var(--muted);text-align:center;padding:24px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+@media(max-width:760px){.stats{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.order{grid-template-columns:1fr}.order-actions{justify-content:flex-start}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">🍕</div><div><h1>La Tua Pizzeria</h1><p>Pannello di gestione</p></div></div>
+  <div class="header-date" id="today"></div>
+</header>
+<main>
+  <section class="stats">
+    <div class="stat"><span>Ordini di oggi</span><strong id="ordersCount">0</strong><small>Totale ordini registrati</small></div>
+    <div class="stat"><span>Incasso previsto</span><strong id="revenue">€ 0,00</strong><small>In base agli ordini inseriti</small></div>
+    <div class="stat"><span>Da preparare</span><strong id="pending">0</strong><small>Ordini non ancora consegnati</small></div>
+  </section>
+  <section class="layout">
+    <div class="panel">
+      <h2>➕ Registra un ordine</h2>
+      <form id="orderForm">
+        <div class="row">
+          <label>Nome cliente<input id="customer" placeholder="Es. Mario Rossi" required></label>
+          <label>Tipo ordine<select id="kind"><option>Asporto</option><option>Consegna</option><option>Tavolo</option></select></label>
+        </div>
+        <div class="row">
+          <label>Pizza<select id="pizza">
+            <option value="Margherita">Margherita</option><option value="Marinara">Marinara</option><option value="Diavola">Diavola</option><option value="Quattro Formaggi">Quattro Formaggi</option><option value="Prosciutto e Funghi">Prosciutto e Funghi</option><option value="Vegetariana">Vegetariana</option>
+          </select></label>
+          <label>Quantità<input id="quantity" type="number" min="1" max="50" value="1" required></label>
+        </div>
+        <label>Note (facoltative)<input id="notes" placeholder="Es. senza mozzarella"></label>
+        <button class="primary" type="submit">Aggiungi ordine</button>
+      </form>
+    </div>
+    <div class="panel">
+      <h2>📋 Menu rapido</h2>
+      <div class="menu-list">
+        <div class="menu-item"><div><b>Margherita</b><small>Pomodoro, mozzarella, basilico</small></div><span class="price">€ 6,50</span></div>
+        <div class="menu-item"><div><b>Marinara</b><small>Pomodoro, aglio, origano</small></div><span class="price">€ 5,50</span></div>
+        <div class="menu-item"><div><b>Diavola</b><small>Pomodoro, mozzarella, salame piccante</small></div><span class="price">€ 8,00</span></div>
+        <div class="menu-item"><div><b>Quattro Formaggi</b><small>Selezione di formaggi</small></div><span class="price">€ 8,50</span></div>
+        <div class="menu-item"><div><b>Prosciutto e Funghi</b><small>Pomodoro, mozzarella, prosciutto, funghi</small></div><span class="price">€ 8,50</span></div>
+        <div class="menu-item"><div><b>Vegetariana</b><small>Verdure di stagione</small></div><span class="price">€ 8,00</span></div>
+      </div>
+      <p style="font-size:12px;color:#777;margin:12px 0 0">Prezzi di esempio, personalizzabili nel codice.</p>
+    </div>
+  </section>
+  <section class="panel orders-panel">
+    <div class="orders-head"><h2>🧾 Ordini</h2><div class="filters"><select id="statusFilter" aria-label="Filtra per stato"><option value="Tutti">Tutti gli stati</option><option>Da preparare</option><option>In preparazione</option><option>Pronto</option><option>Consegnato</option></select><button class="soft" id="clearBtn" type="button">Svuota ordini</button></div></div>
+    <div class="order-list" id="orderList"></div>
+  </section>
+</main>
+<footer>I dati vengono salvati in questo browser. Questa pagina è una demo locale, non un sistema di cassa fiscale.</footer>
+<script>
+const prices={"Margherita":6.5,"Marinara":5.5,"Diavola":8,"Quattro Formaggi":8.5,"Prosciutto e Funghi":8.5,"Vegetariana":8};
+const euro=n=>new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(n);
+const today=new Date();document.getElementById('today').textContent=today.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+let orders=[];
+try{orders=JSON.parse(localStorage.getItem('pizzeria-orders')||'[]')}catch(e){orders=[]}
+function save(){localStorage.setItem('pizzeria-orders',JSON.stringify(orders));render()}
+function render(){
+ const count=orders.length,total=orders.reduce((s,o)=>s+o.total,0),pending=orders.filter(o=>o.status!=='Consegnato').length;
+ document.getElementById('ordersCount').textContent=count;document.getElementById('revenue').textContent=euro(total);document.getElementById('pending').textContent=pending;
+ const filter=document.getElementById('statusFilter').value;
+ const visible=orders.filter(o=>filter==='Tutti'||o.status===filter);
+ const list=document.getElementById('orderList');
+ if(!visible.length){list.innerHTML='<div class="empty">Nessun ordine da mostrare. Aggiungi il primo ordine qui sopra.</div>';return}
+ list.innerHTML=visible.slice().reverse().map(o=>`<article class="order"><div><h3>#${o.id} · ${escapeHtml(o.customer)} <span class="tag">${escapeHtml(o.kind)}</span></h3><p>${o.qty} × ${escapeHtml(o.pizza)} · ${euro(o.total)}</p><p>${o.notes?escapeHtml(o.notes)+' · ':''}${o.time}</p></div><div class="order-actions"><select aria-label="Stato ordine" onchange="changeStatus(${o.id},this.value)">${['Da preparare','In preparazione','Pronto','Consegnato'].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join('')}</select><button class="soft" onclick="deleteOrder(${o.id})" aria-label="Elimina ordine">Elimina</button></div></article>`).join('');
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+document.getElementById('orderForm').addEventListener('submit',e=>{
+ e.preventDefault();const pizza=document.getElementById('pizza').value,qty=Number(document.getElementById('quantity').value);
+ orders.push({id:Date.now(),customer:document.getElementById('customer').value.trim(),kind:document.getElementById('kind').value,pizza,qty,total:prices[pizza]*qty,notes:document.getElementById('notes').value.trim(),status:'Da preparare',time:new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})});
+ e.target.reset();document.getElementById('quantity').value=1;save();
+});
+function changeStatus(id,status){const o=orders.find(o=>o.id===id);if(o){o.status=status;save()}}
+function deleteOrder(id){orders=orders.filter(o=>o.id!==id);save()}
+document.getElementById('statusFilter').addEventListener('change',render);
+document.getElementById('clearBtn').addEventListener('click',()=>{if(confirm('Vuoi eliminare tutti gli ordini? Questa azione non si può annullare.')){orders=[];save()}});
+render();
+</script>
+</body>
+</html>

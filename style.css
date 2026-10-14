@@ -360,6 +360,9 @@ footer strong {
         padding: 58px 20px
     }
 }
+#myLinks {
+    display: none;
+  }
 
 @media(max-width:480px) {
     .brandname {

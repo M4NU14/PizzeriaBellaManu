@@ -1,0 +1,405 @@
+:root {
+    --green: #173d2d;
+    --cream: #fff8eb;
+    --red: #d94835;
+    --ink: #20231f;
+    --muted: #6c716a
+}
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+.topbar {
+    background: var(--green);
+    color: white;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: .84rem;
+    letter-spacing: .06em
+}
+
+header {
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #e7dfd1
+}
+
+.nav {
+    max-width: 1160px;
+    margin: auto;
+    padding: 15px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--green)
+}
+
+.mark {
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--red);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem
+}
+
+.brandname {
+    font-family: Georgia, serif;
+    font-weight: bold;
+    letter-spacing: .08em;
+    line-height: 1.1
+}
+
+.brandname small {
+    display: block;
+    font: 700 .62rem Arial, sans-serif;
+    letter-spacing: .2em;
+    margin-top: 5px
+}
+
+.links {
+    display: flex;
+    gap: 24px;
+    font-size: .92rem;
+    font-weight: bold
+}
+
+.links a:hover {
+    color: var(--red)
+}
+
+.btn {
+    display: inline-block;
+    background: var(--red);
+    border: 2px solid var(--red);
+    color: #fff;
+    padding: 12px 19px;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: .03em
+}
+
+.btn:hover {
+    background: #bd3928;
+    border-color: #bd3928
+}
+
+.hero {
+    min-height: 590px;
+    display: flex;
+    align-items: center;
+    color: white;
+    background: linear-gradient(90deg, rgba(10, 25, 17, .88), rgba(10, 25, 17, .56) 55%, rgba(10, 25, 17, .12)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1900&q=85') center/cover
+}
+
+.hero-inner {
+    max-width: 1160px;
+    width: 100%;
+    margin: auto;
+    padding: 75px 22px
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    color: #f2c4a2;
+    font-size: .78rem;
+    letter-spacing: .2em;
+    font-weight: bold
+}
+
+h1,
+h2,
+h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.12
+}
+
+h1 {
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    max-width: 690px;
+    margin: 20px 0
+}
+
+.hero p {
+    font-size: 1.12rem;
+    max-width: 530px;
+    color: #f2f2ed;
+    margin-bottom: 28px
+}
+
+.section {
+    max-width: 1160px;
+    margin: auto;
+    padding: 78px 22px
+}
+
+.heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 38px
+}
+
+.heading .eyebrow,
+.about .eyebrow {
+    color: var(--red)
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    color: var(--green);
+    margin: 12px 0
+}
+
+.heading p,
+.feature p,
+.menu-card p,
+.about p {
+    color: var(--muted)
+}
+
+.features,
+.menu-grid,
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px
+}
+
+.feature {
+    padding: 28px;
+    background: #fffdf7;
+    border: 1px solid #eee5d6;
+    border-radius: 9px;
+    text-align: center
+}
+
+.icon {
+    font-size: 2rem
+}
+
+.feature h3,
+.contact-card h3 {
+    color: var(--green);
+    font-size: 1.35rem;
+    margin: 13px 0 8px
+}
+
+.feature p {
+    margin: 0
+}
+
+.menu-section {
+    background: #f1e9da
+}
+
+.menu-card {
+    background: var(--cream);
+    border-radius: 9px;
+    overflow: hidden
+}
+
+.menu-card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block
+}
+
+.menu-card div {
+    padding: 21px
+}
+
+.menu-card h3 {
+    font-size: 1.4rem;
+    color: var(--green);
+    margin: 0 0 8px
+}
+
+.menu-card p {
+    margin: 0;
+    font-size: .94rem
+}
+
+.note {
+    text-align: center;
+    color: var(--muted);
+    font-size: .88rem;
+    margin-top: 24px
+}
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 46px
+}
+
+.about img {
+    width: 100%;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 10px
+}
+
+.about p {
+    margin: 18px 0
+}
+
+.contact-section {
+    background: var(--green);
+    color: #fff
+}
+
+.contact-section h2 {
+    color: white
+}
+
+.contact-section .heading p {
+    color: #d8e0d9
+}
+
+.contact-card {
+    border: 1px solid #ffffff35;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center
+}
+
+.contact-card h3 {
+    color: white
+}
+
+.contact-card p {
+    color: #d8e0d9;
+    margin: 0
+}
+
+footer {
+    background: #10291e;
+    color: #cbd5ce;
+    text-align: center;
+    padding: 24px;
+    font-size: .86rem
+}
+
+footer strong {
+    color: white
+}
+
+.mobile-cta {
+    display: none
+}
+
+@media(max-width:800px) {
+    .nav {
+        flex-wrap: wrap
+    }
+
+    .links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 17px;
+        flex-wrap: wrap
+    }
+
+    .nav>.btn {
+        padding: 9px 12px;
+        font-size: .82rem
+    }
+
+    .hero {
+        min-height: 530px;
+        background-position: 60% center
+    }
+
+    .features,
+    .menu-grid,
+    .contact-grid {
+        grid-template-columns: 1fr
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+        gap: 25px
+    }
+
+    .about img {
+        height: 300px
+    }
+
+    .section {
+        padding: 58px 20px
+    }
+}
+
+@media(max-width:480px) {
+    .brandname {
+        font-size: .95rem
+    }
+
+    .mark {
+        width: 39px;
+        height: 39px
+    }
+
+    .links {
+        font-size: .82rem;
+        gap: 13px
+    }
+
+    .nav>.btn {
+        display: none
+    }
+
+    .hero {
+        min-height: 500px
+    }
+
+    .hero p {
+        font-size: 1rem
+    }
+
+    .mobile-cta {
+        display: block;
+        position: fixed;
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+        text-align: center;
+        z-index: 20;
+        box-shadow: 0 10px 30px #0003
+    }
+
+    footer {
+        padding-bottom: 82px
+    }
+}

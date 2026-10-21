@@ -12,7 +12,7 @@ Il sito è realizzato con **HTML e CSS**, senza framework o dipendenze da instal
 - **Menu pizze 🍕** — `menu/menupizze.html`
 - **Menu bibite 🥤** — `menu/menubibite.html`
 - **Menu dolci 🍪** — `menu/menudolci.html`
-- **Contatti ☎️** — indirizzo, telefono e orari.
+- **Contatti ☎️** — Via Appia Lato Itri Fondi(LT),  0771 123456 Aperti tutti i giorni
 
 ## Struttura dei file
 

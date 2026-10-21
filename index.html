@@ -1,16 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Pizzeria BELLA MANU a Fondi: pizza e passione italiana.">
+    <meta name="theme-color" content="#173d2d">
+    <title>Pizzeria BELLA MANU | Fondi</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <nav>
-        <H1>Pizzeria BELLA MANU</H1>
-        <a href="menu/menupizze.html">Menu Pizza</a>
-        <a href="menu/menubibite.html"> Menu Bibite</a>
-        <a href="menu/menudolci.html">Menu Dolci</a>
-    </nav>
+
+<body class="home-page">
+    <div class="topbar">PIZZERIA BELLA MANU · FONDI</div>
+    <header>
+        <nav class="nav" aria-label="Navigazione principale">
+            <a class="brand" href="#home"><span class="mark">🍕</span><span class="brandname">BELLA MANU<small>PIZZERIA
+                        · FONDI</small></span></a>
+            <div class="links">
+                <a href="#home">Home</a>
+                <div class="menu-dropdown">
+                    <span class="menu-dropdown-label" tabindex="0">Menu</span>
+                    <div class="menu-dropdown-links">
+                        <a href="menu/menupizze.html">Pizze</a>
+                        <a href="menu/menubibite.html">Bibite</a>
+                        <a href="menu/menudolci.html">Dolci</a>
+                    </div>
+                </div>
+                <a href="#pizzeria">La pizzeria</a>
+                <a href="contatti.html">Contatti</a>
+            </div>
+            <a class="btn" href="contatti.html">CONTATTACI</a>
+        </nav>
+    </header>
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-inner">
+                <span class="eyebrow">Il piacere della tradizione italiana</span>
+                <h1>Il gusto autentico della pizza.</h1>
+                <p>Ingredienti scelti, profumi irresistibili e tanta passione. Ti aspettiamo da Pizzeria BELLA MANU, a
+                    Fondi.</p>
+                <a class="btn" href="contatti.html">VIENI A TROVARCI</a>
+            </div>
+        </section>
+        <section class="section about" id="pizzeria">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=85"
+                alt="Pizza italiana appena preparata" loading="lazy">
+            <div class="about-copy">
+                <span class="eyebrow">La nostra passione</span>
+                <h2>Semplicemente buona, da condividere.</h2>
+                <p>La pizza è un momento fatto di sapori genuini e convivialità. Da BELLA MANU ogni occasione diventa
+                    speciale: una cena in famiglia, una serata tra amici o una pausa sfiziosa.</p>
+                <p>Ti aspettiamo a Fondi, per stare insieme e goderti qualcosa di buono.</p>
+                <a class="btn" href="contatti.html">VIENI A TROVARCI</a>
+            </div>
+            <div class="features about-features">
+                <article class="feature">
+                    <div class="icon">🌿</div>
+                    <h3>Ingredienti scelti</h3>
+                    <p>Il sapore comincia dalla qualità e dalla cura di ogni dettaglio.</p>
+                </article>
+                <article class="feature">
+                    <div class="icon">🍕</div>
+                    <h3>Arte della pizza</h3>
+                    <p>La passione per una tradizione tutta italiana.</p>
+                </article>
+                <article class="feature">
+                    <div class="icon">❤️</div>
+                    <h3>Passione italiana</h3>
+                    <p>Un posto dove ritrovarsi, stare insieme e sentirsi accolti.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+    <a class="btn mobile-cta" href="contatti.html">CONTATTI E PRENOTAZIONI</a>
+    <footer><strong>PIZZERIA BELLA MANU</strong> · Fondi (LT)<br>© <span id="year"></span> Bella Manu. Tutti i diritti
+        riservati.</footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
+
 </html>

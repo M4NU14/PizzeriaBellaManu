@@ -1,4 +1,4 @@
-# 🍕 Pizzeria Bella Manu
+# 🍕 Pizzeria Bella Manu 🍕
 
 Un piccolo progetto web dedicato a **Pizzeria Bella Manu**, a Fondi:
 
@@ -9,10 +9,10 @@ Il sito è realizzato con **HTML e CSS**, senza framework o dipendenze da instal
 ## Pagine
 
 - **Home** — presentazione della pizzeria.
-- **Menu pizze** — `menu/menupizze.html`
-- **Menu bibite** — `menu/menubibite.html`
-- **Menu dolci** — `menu/menudolci.html`
-- **Contatti** — indirizzo, telefono e orari.
+- **Menu pizze 🍕** — `menu/menupizze.html`
+- **Menu bibite 🥤** — `menu/menubibite.html`
+- **Menu dolci 🍪** — `menu/menudolci.html`
+- **Contatti ☎️** — indirizzo, telefono e orari.
 
 ## Struttura dei file
 

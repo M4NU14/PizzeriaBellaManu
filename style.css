@@ -98,6 +98,29 @@ header {
     font-weight: bold
 }
 
+.nav-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: 1px solid #e7dfd1;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, box-shadow .2s ease
+}
+
+.nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--green);
+    transition: opacity .2s ease, transform .2s ease
+}
+
 .links a:hover {
     color: var(--red)
 }
@@ -388,8 +411,50 @@ h2 {
     margin-top: 8px
 }
 
-.about-features .feature {
-    padding: 27px 22px
+.reviews {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 8px
+}
+
+.reviews-heading {
+    grid-column: 1 / -1;
+    text-align: center
+}
+
+.reviews-heading p {
+    margin: 0;
+    color: var(--muted)
+}
+
+.review-card {
+    padding: 27px 24px;
+    border: 1px solid #eee5d6;
+    border-radius: 12px;
+    background: #fffdf7;
+    box-shadow: 0 10px 28px rgba(23, 61, 45, .045)
+}
+
+.review-stars {
+    color: #c48621;
+    letter-spacing: .12em;
+    font-size: 1.1rem
+}
+
+.review-card blockquote {
+    margin: 15px 0;
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.08rem
+}
+
+.review-author {
+    margin: 0;
+    color: var(--muted);
+    font-size: .83rem;
+    font-weight: bold
 }
 
 .about img {
@@ -414,7 +479,8 @@ h2 {
 }
 
 a:focus-visible,
-.menu-dropdown-label:focus-visible {
+.menu-dropdown-label:focus-visible,
+.nav-toggle:focus-visible {
     outline: 3px solid var(--red);
     outline-offset: 4px
 }
@@ -713,8 +779,29 @@ footer strong {
 }
 
 .menu-dropdown-label {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
     cursor: pointer;
-    display: inline-block
+    display: inline-flex;
+    align-items: center;
+    gap: 7px
+}
+
+.menu-dropdown-label::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--red);
+    border-bottom: 2px solid var(--red);
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform .2s ease
+}
+
+.menu-dropdown.open .menu-dropdown-label::after {
+    transform: rotate(225deg) translateY(-2px)
 }
 
 .menu-dropdown-links {
@@ -732,14 +819,29 @@ footer strong {
     z-index: 25
 }
 
-.menu-dropdown:hover .menu-dropdown-links,
-.menu-dropdown:focus-within .menu-dropdown-links {
+.menu-dropdown.open .menu-dropdown-links {
     display: flex
 }
 
 .menu-dropdown-links a {
     padding: 10px 12px;
     border-radius: 6px
+}
+
+.menu-icon {
+    display: none;
+    width: 26px;
+    height: 26px;
+    margin-left: 6px;
+    place-items: center;
+    border-radius: 50%;
+    background: #f7e9dd;
+    font-size: .9rem;
+    line-height: 1
+}
+
+.nav-icon {
+    display: none
 }
 
 .menu-dropdown-links a:hover,
@@ -753,9 +855,200 @@ footer strong {
     color: var(--red)
 }
 
+@media(min-width:801px) {
+    .nav .links {
+        align-items: center;
+        gap: 6px
+    }
+
+    .nav .links > a,
+    .nav .menu-dropdown-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 42px;
+        padding: 6px 10px;
+        border-radius: 8px;
+        color: var(--green);
+        transition: background .2s ease, color .2s ease, transform .2s ease
+    }
+
+    .nav .links > a:hover,
+    .nav .links > a:focus-visible,
+    .nav .menu-dropdown-label:hover,
+    .nav .menu-dropdown-label:focus-visible {
+        background: #f5efe6;
+        color: var(--red)
+    }
+
+    .nav .nav-icon,
+    .nav .menu-icon {
+        display: inline-grid;
+        width: 28px;
+        height: 28px;
+        flex: 0 0 28px;
+        margin: 0;
+        place-items: center;
+        border-radius: 50%;
+        background: #f7e9dd;
+        font-size: .88rem;
+        line-height: 1
+    }
+
+    .nav .menu-dropdown-label::after {
+        display: none
+    }
+
+    .nav .menu-dropdown:hover .menu-dropdown-links,
+    .nav .menu-dropdown:focus-within .menu-dropdown-links {
+        display: flex
+    }
+
+    .nav .menu-dropdown-links {
+        gap: 4px;
+        padding: 8px;
+        border-radius: 12px
+    }
+
+    .nav .menu-dropdown-links a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        color: var(--green);
+        transition: background .2s ease, color .2s ease, transform .2s ease
+    }
+
+    .nav .menu-dropdown-links .menu-icon {
+        order: -1
+    }
+
+    .nav .menu-dropdown-links a:hover,
+    .nav .menu-dropdown-links a:focus-visible {
+        transform: translateX(2px);
+        background: #f5efe6;
+        color: var(--red)
+    }
+}
+
 @media(max-width:800px) {
     .nav {
         flex-wrap: wrap
+    }
+
+    .nav-toggle {
+        display: flex
+    }
+
+    .nav .links {
+        display: none;
+        order: 3;
+        width: 100%;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #eee5d6;
+        border-radius: 12px;
+        background: #fffdf7;
+        box-shadow: 0 10px 24px rgba(23, 61, 45, .08)
+    }
+
+    .nav.menu-open .links {
+        display: flex
+    }
+
+    .nav .links > a,
+    .nav .menu-dropdown-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 44px;
+        padding: 9px 10px;
+        border-radius: 8px;
+        background: #fff;
+        color: var(--green);
+        transition: background .2s ease, color .2s ease, transform .2s ease
+    }
+
+    .nav .links > a:hover,
+    .nav .links > a:focus-visible {
+        transform: translateX(2px);
+        background: #f5efe6;
+        color: var(--red)
+    }
+
+    .nav .nav-icon,
+    .nav .menu-icon {
+        display: inline-grid;
+        width: 30px;
+        height: 30px;
+        flex: 0 0 30px;
+        margin: 0;
+        place-items: center;
+        border-radius: 50%;
+        background: #f7e9dd;
+        font-size: .95rem;
+        line-height: 1
+    }
+
+    .nav .menu-dropdown-label {
+        width: 100%;
+        text-align: left
+    }
+
+    .nav .menu-dropdown-label::after {
+        margin-left: auto
+    }
+
+    .nav .menu-dropdown.open .menu-dropdown-label {
+        background: #f5efe6;
+        color: var(--red)
+    }
+
+    .nav .menu-dropdown.open .menu-dropdown-links {
+        display: flex;
+        position: static;
+        min-width: 0;
+        gap: 5px;
+        margin: 6px 0 8px 10px;
+        padding: 8px;
+        border: 1px solid #eee5d6;
+        border-left: 3px solid var(--red);
+        border-radius: 10px;
+        background: #fffdf7;
+        box-shadow: 0 8px 20px rgba(23, 61, 45, .08)
+    }
+
+    .nav .menu-dropdown-links a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 10px;
+        border-radius: 7px;
+        background: #fff;
+        color: var(--green);
+        transition: background .2s ease, transform .2s ease
+    }
+
+    .nav .menu-dropdown-links .menu-icon {
+        order: -1
+    }
+
+    .nav .menu-dropdown-links a:hover,
+    .nav .menu-dropdown-links a:focus-visible {
+        transform: translateX(2px);
+        background: #f5efe6;
+        color: var(--red)
+    }
+
+    .nav .menu-dropdown-links a:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 2px
+    }
+
+    .nav > .btn {
+        display: none
     }
 
     .links {
@@ -766,7 +1059,7 @@ footer strong {
         flex-wrap: wrap
     }
 
-    .nav>.btn {
+    .nav > .btn {
         padding: 9px 12px;
         font-size: .82rem
     }
@@ -777,6 +1070,7 @@ footer strong {
     }
 
     .features,
+    .reviews,
     .menu-grid,
     .contact-grid {
         grid-template-columns: 1fr
@@ -869,16 +1163,14 @@ footer strong {
 
     .mobile-cta {
         display: block;
-        position: fixed;
-        bottom: 12px;
-        left: 12px;
-        right: 12px;
+        width: fit-content;
+        max-width: calc(100% - 24px);
+        margin: 12px auto;
         text-align: center;
-        z-index: 20;
         box-shadow: 0 10px 30px #0003
     }
 
     footer {
-        padding-bottom: 82px
+        padding-bottom: 24px
     }
 }

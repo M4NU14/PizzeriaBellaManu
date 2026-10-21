@@ -1,22 +1,697 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#173d2d">
-    <title>Pizze | Pizzeria BELLA MANU</title>
-    <link rel="icon" type="image/png" href="../assets/logo-bella-manu.png">
-    <link rel="stylesheet" href="../style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="../assets/logo-bella-manu.png">
+<title>Pizzeria Bella Manu</title>
+<link rel="stylesheet" href="../style.css">
+
+<style>
+:root {
+  --verde: #20392c;
+  --rosso: #b6382c;
+  --crema: #fff8ed;
+  --oro: #d9b474;
+  --testo: #292a24;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--crema);
+  color: var(--testo);
+}
+
+.hero {
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  padding: 65px 8%;
+  color: white;
+  background:
+    linear-gradient(90deg, #15291e 5%, #15291ecc 45%, #15291e20),
+    url("https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1600&q=85")
+    center/cover;
+}
+
+.hero-content { max-width: 570px; }
+
+.hero small {
+  color: var(--oro);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font: 500 clamp(42px, 7vw, 76px)/1.05 Georgia, serif;
+  margin: 18px 0;
+}
+
+.hero h1 em { color: var(--oro); }
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #f2eee5;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--rosso);
+  color: white;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn:hover { background: #92291f; }
+
+.intro {
+  text-align: center;
+  padding: 55px 20px 25px;
+}
+
+.intro small {
+  color: var(--rosso);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.intro h2 {
+  font: 42px Georgia, serif;
+  color: var(--verde);
+  margin: 12px 0;
+}
+
+.intro p {
+  color: #716f65;
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.7;
+}
+
+.menu {
+  max-width: 1200px;
+  margin: auto;
+  padding: 25px 22px 75px;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 25px 0 32px;
+}
+
+.filters button {
+  background: white;
+  border: 1px solid #e5d9c7;
+  border-radius: 25px;
+  padding: 10px 17px;
+  cursor: pointer;
+}
+
+.filters button.active,
+.filters button:hover {
+  background: var(--verde);
+  color: white;
+}
+
+.pizza-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.pizza-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #eee4d5;
+  box-shadow: 0 8px 25px #382c1a0c;
+  transition: transform .2s;
+}
+
+.pizza-card:hover { transform: translateY(-5px); }
+
+.pizza-card[hidden] { display: none; }
+
+.pizza-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  background: #e9dfce;
+}
+
+.pizza-info { padding: 20px; }
+
+.pizza-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: start;
+}
+
+.pizza-card h3 {
+  font: bold 24px Georgia, serif;
+  color: var(--verde);
+  margin: 0 0 10px;
+}
+
+.price {
+  color: var(--rosso);
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.pizza-card p {
+  color: #716f65;
+  line-height: 1.6;
+  min-height: 50px;
+  margin: 0;
+}
+
+.tag {
+  display: inline-block;
+  background: #f4ead7;
+  color: #785d32;
+  padding: 5px 9px;
+  border-radius: 5px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 15px;
+}
+
+.image-credit {
+  display: block;
+  margin-top: 10px;
+  color: #716f65;
+  font-size: 11px;
+}
+
+.image-credit a { text-decoration: underline; }
+
+.builder {
+  background: var(--verde);
+  color: white;
+  padding: 70px 20px;
+}
+
+.builder-inner {
+  max-width: 1050px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 45px;
+  align-items: start;
+}
+
+.builder h2 {
+  font: 48px/1.1 Georgia, serif;
+  margin: 12px 0 20px;
+}
+
+.builder-copy p {
+  color: #dce4db;
+  line-height: 1.8;
+}
+
+.builder-copy small {
+  color: var(--oro);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.builder-card {
+  background: white;
+  color: var(--testo);
+  border-radius: 18px;
+  padding: 28px;
+}
+
+.builder-card h3 {
+  color: var(--verde);
+  font: 30px Georgia, serif;
+  margin: 0 0 8px;
+}
+
+.builder-card > p {
+  color: #77746a;
+  margin-bottom: 25px;
+}
+
+label.field-title {
+  display: block;
+  font-weight: bold;
+  margin: 20px 0 10px;
+}
+
+select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ded5c5;
+  border-radius: 9px;
+  background: white;
+  font-size: 15px;
+}
+
+.ingredients {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ingredient {
+  border: 1px solid #e8dfd1;
+  border-radius: 9px;
+  padding: 11px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+}
+
+.ingredient:has(input:checked) {
+  background: #fff0e9;
+  border-color: var(--rosso);
+}
+
+.ingredient input { accent-color: var(--rosso); }
+
+.ingredient span {
+  margin-left: auto;
+  color: var(--rosso);
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.total-box {
+  border-top: 1px solid #e8dfd1;
+  margin-top: 24px;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.total-box small { color: #77746a; }
+
+#total {
+  font-size: 30px;
+  color: var(--rosso);
+  font-weight: bold;
+}
+
+#riepilogo {
+  display: none;
+  margin-top: 18px;
+  padding: 15px;
+  border-radius: 9px;
+  background: #f4efdf;
+  line-height: 1.7;
+}
+
+#riepilogo.visible { display: block; }
+
+footer {
+  background: #14231b;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+footer h3 {
+  font: 28px Georgia, serif;
+  margin: 0 0 8px;
+}
+
+footer p { color: #d4d9cf; }
+
+@media (max-width: 850px) {
+  .pizza-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .builder-inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .hero { min-height: 430px; padding: 45px 23px; }
+  .hero h1 { font-size: 48px; }
+  .intro h2 { font-size: 34px; }
+  .pizza-grid { grid-template-columns: 1fr; }
+  .pizza-card img { height: 240px; }
+  .ingredients { grid-template-columns: 1fr; }
+  .builder h2 { font-size: 40px; }
+  .builder-card { padding: 20px; }
+}
+</style>
 </head>
 
 <body>
-    <header>
-        <nav class="nav" aria-label="Navigazione principale">
-            <a class="brand" href="../index.html#home" aria-label="Pizzeria Bella Manu, vai alla home"><img
-                    class="brand-logo" src="../assets/logo-bella-manu.png" alt="Pizzeria Bella Manu"></a>
-        </nav>
-    </header>
+
+<div class="topbar">PIZZERIA BELLA MANU · FONDI</div>
+<header>
+  <nav class="nav" aria-label="Navigazione principale">
+    <a class="brand" href="../index.html#home" aria-label="Pizzeria Bella Manu, vai alla home">
+      <img class="brand-logo" src="../assets/logo-bella-manu.png" alt="Pizzeria Bella Manu">
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false"
+      aria-controls="pizza-navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="links" id="pizza-navigation">
+      <a href="../index.html#home"><span class="nav-icon" aria-hidden="true">🏠</span>Home</a>
+      <div class="menu-dropdown">
+        <button class="menu-dropdown-label" type="button" aria-expanded="false"
+          aria-controls="pizza-menu-sections"><span class="nav-icon" aria-hidden="true">☰</span>Menu</button>
+        <div class="menu-dropdown-links" id="pizza-menu-sections">
+          <a href="menupizze.html" aria-current="page"><span class="menu-icon" aria-hidden="true">🍕</span>Pizze</a>
+          <a href="menubibite.html"><span class="menu-icon" aria-hidden="true">🥤</span>Bibite</a>
+          <a href="menudolci.html"><span class="menu-icon" aria-hidden="true">🍪</span>Dolci</a>
+        </div>
+      </div>
+      <a href="../index.html#pizzeria"><span class="nav-icon" aria-hidden="true">🍽️</span>La pizzeria</a>
+      <a href="../contatti.html"><span class="nav-icon" aria-hidden="true">📍</span>Contatti</a>
+    </div>
+    <a class="btn" href="../contatti.html">CONTATTACI</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <small>Benvenuti da Bella Manu</small>
+    <h1>La pizza buona.<br><em>Come piace a te.</em></h1>
+    <p>Dai grandi classici alle combinazioni tutte tue. Scegli la tua preferita o inventane una nuova!</p>
+    <a class="btn" href="#menu">SCOPRI IL MENÙ ↓</a>
+  </div>
+</section>
+
+<section class="intro">
+  <small>Il nostro menù</small>
+  <h2>Una fetta di felicità</h2>
+  <p>Ingredienti selezionati, abbinamenti sfiziosi e pizze per tutti i gusti. Trova la tua preferita!</p>
+</section>
+
+<main class="menu" id="menu">
+  <div class="filters">
+    <button class="active" data-filter="tutte">Tutte</button>
+    <button data-filter="classiche">Classiche</button>
+    <button data-filter="gustose">Gustose</button>
+    <button data-filter="vegetariane">Vegetariane</button>
+  </div>
+
+  <div class="pizza-grid">
+
+    <article class="pizza-card" data-category="classiche">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=85" alt="Pizza Margherita">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Margherita</h3><span class="price">€ 7,00</span></div>
+        <p>Pomodoro, mozzarella e basilico fresco.</p>
+        <span class="tag">La regina</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="classiche">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=800&q=85" alt="Pizza Marinara senza mozzarella">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Marinara</h3><span class="price">€ 6,00</span></div>
+        <p>Pomodoro, aglio, origano e olio extravergine d'oliva.</p>
+        <span class="tag">Semplice e profumata</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="gustose">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=85" alt="Pizza Diavola con salame piccante">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Diavola</h3><span class="price">€ 9,00</span></div>
+        <p>Pomodoro, mozzarella e salame piccante.</p>
+        <span class="tag">Carattere deciso</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="gustose">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=800&q=85" alt="Pizza Capricciosa">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Capricciosa</h3><span class="price">€ 10,50</span></div>
+        <p>Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi e olive.</p>
+        <span class="tag">Ricca e completa</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="gustose">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1573821663912-569905455b1c?auto=format&fit=crop&w=800&q=85" alt="Pizza ai quattro formaggi">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Quattro Formaggi</h3><span class="price">€ 10,00</span></div>
+        <p>Mozzarella e un mix cremoso di formaggi selezionati.</p>
+        <span class="tag">Cremosa</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="gustose">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=85" alt="Pizza prosciutto e funghi">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Prosciutto e Funghi</h3><span class="price">€ 9,50</span></div>
+        <p>Pomodoro, mozzarella, prosciutto cotto e funghi.</p>
+        <span class="tag">Un grande classico</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="classiche">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=800&q=85" alt="Pizza Napoli">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Napoli</h3><span class="price">€ 8,50</span></div>
+        <p>Pomodoro, mozzarella, acciughe, capperi e origano.</p>
+        <span class="tag">Mediterranea</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="vegetariane">
+      <img loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Calzone_01.jpg/960px-Calzone_01.jpg" alt="Pizza calzone ripiena">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Calzone  </h3><span class="price">€ 8,50</span></div>
+        <p>Mozzarella, patatine e würstel </p>
+        <span class="tag">Originale</span>
+        <small class="image-credit">Foto: <a href="https://commons.wikimedia.org/wiki/File:Calzone_01.jpg">TELLURIDE 749</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</small>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="gustose">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=800&q=85" alt="Pizza würstel e patatine">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Würstel e Patatine</h3><span class="price">€ 9,00</span></div>
+        <p>Pomodoro, mozzarella, würstel e patatine croccanti.</p>
+        <span class="tag">Sfiziosa</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="gustose">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=800&q=85" alt="Pizza boscaiola">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Boscaiola</h3><span class="price">€ 10,50</span></div>
+        <p>Mozzarella, funghi e salsiccia.</p>
+        <span class="tag">Rustica</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="gustose">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=85" alt="Pizza Quattro Stagioni">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Quattro Stagioni</h3><span class="price">€ 10,50</span></div>
+        <p>Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi e olive.</p>
+        <span class="tag">Quattro gusti</span>
+      </div>
+    </article>
+
+    <article class="pizza-card" data-category="vegetariane">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=85" alt="Pizza con pomodoro e basilico">
+      <div class="pizza-info">
+        <div class="pizza-heading"><h3>Bufalina</h3><span class="price">€ 10,00</span></div>
+        <p>Pomodoro, mozzarella di bufala e basilico fresco.</p>
+        <span class="tag">Fresca e delicata</span>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<section class="builder" id="personalizza">
+  <div class="builder-inner">
+    <div class="builder-copy">
+      <small>Fuori menù, dentro i tuoi gusti</small>
+      <h2>La tua pizza.<br>Le tue regole.</h2>
+      <p>Scegli la base, aggiungi gli ingredienti che ami e guarda il prezzo aggiornarsi in tempo reale.</p>
+      <p>🍕 Da una semplice Margherita a una creazione tutta tua: decidi tu come renderla speciale.</p>
+    </div>
+
+    <div class="builder-card">
+      <h3>Crea la tua pizza</h3>
+      <p>Componi la tua combinazione ideale.</p>
+
+      <label class="field-title" for="base">1. Scegli la base</label>
+      <select id="base">
+        <option value="7">Margherita — € 7,00</option>
+        <option value="6">Marinara — € 6,00</option>
+        <option value="8">Pizza bianca — € 8,00</option>
+      </select>
+
+      <label class="field-title">2. Aggiungi gli ingredienti</label>
+      <div class="ingredients">
+        <label class="ingredient"><input type="checkbox" value="1.5" data-name="Mozzarella extra"> Mozzarella extra <span>+€ 1,50</span></label>
+        <label class="ingredient"><input type="checkbox" value="2" data-name="Bufala" > Bufala <span>+€ 2,00</span></label>
+        <label class="ingredient"><input type="checkbox" value="1.5" data-name="Prosciutto cotto"> Prosciutto cotto <span>+€ 1,50</span></label>
+        <label class="ingredient"><input type="checkbox" value="2" data-name="Salame piccante"> Salame piccante <span>+€ 2,00</span></label>
+        <label class="ingredient"><input type="checkbox" value="1.5" data-name="Funghi"> Funghi <span>+€ 1,50</span></label>
+        <label class="ingredient"><input type="checkbox" value="1.5" data-name="Olive"> Olive <span>+€ 1,50</span></label>
+        <label class="ingredient"><input type="checkbox" value="2" data-name="Salsiccia"> Salsiccia <span>+€ 2,00</span></label>
+        <label class="ingredient"><input type="checkbox" value="2" data-name="Verdure grigliate"> Verdure grigliate <span>+€ 2,00</span></label>
+        <label class="ingredient"><input type="checkbox" value="1.5" data-name="Carciofi"> Carciofi <span>+€ 1,50</span></label>
+        <label class="ingredient"><input type="checkbox" value="2" data-name="Patatine"> Patatine <span>+€ 2,00</span></label>
+        <label class="ingredient"><input type="checkbox" value="1.5" data-name="Acciughe"> Acciughe <span>+€ 1,50</span></label>
+        <label class="ingredient"><input type="checkbox" value="2" data-name="Extra formaggi"> Extra formaggi <span>+€ 1,00</span></label>
+      </div>
+
+      <div class="total-box">
+        <div><small>Prezzo indicativo</small><div id="total">€ 7,00</div></div>
+        <button class="btn" type="button" id="crea">Riepiloga la pizza ↗</button>
+      </div>
+      <div id="riepilogo" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h3>Pizzeria Bella Manu 🍕</h3>
+  <p>Le cose buone uniscono. Grazie per averci scelto!</p>
+
+</footer>
+
+<script>
+const buttons = document.querySelectorAll('.filters button');
+const cards = document.querySelectorAll('.pizza-card');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    button.classList.add('active');
+
+    cards.forEach(card => {
+      card.hidden = button.dataset.filter !== 'tutte' &&
+                    card.dataset.category !== button.dataset.filter;
+    });
+  });
+});
+
+const base = document.getElementById('base');
+const extras = document.querySelectorAll('.ingredient input');
+const total = document.getElementById('total');
+const riepilogo = document.getElementById('riepilogo');
+
+function euro(value) {
+  return new Intl.NumberFormat('it-IT', {
+    style: 'currency',
+    currency: 'EUR'
+  }).format(value);
+}
+
+function calcola() {
+  let prezzo = Number(base.value);
+
+  extras.forEach(extra => {
+    if (extra.checked) prezzo += Number(extra.value);
+  });
+
+  total.textContent = euro(prezzo);
+  return prezzo;
+}
+
+base.addEventListener('change', calcola);
+extras.forEach(extra => extra.addEventListener('change', calcola));
+
+document.getElementById('crea').addEventListener('click', () => {
+  const nomeBase = base.options[base.selectedIndex].text.split(' — ')[0];
+  const ingredienti = Array.from(extras)
+    .filter(extra => extra.checked)
+    .map(extra => extra.dataset.name);
+
+  const lista = ingredienti.length
+    ? ingredienti.join(', ')
+    : 'nessun ingrediente extra';
+
+  riepilogo.textContent =
+    'La tua pizza: ' + nomeBase + ' con ' + lista +
+    '. Prezzo indicativo: ' + euro(calcola()) +
+    '. Questo riepilogo non invia ancora un ordine alla pizzeria.';
+
+  riepilogo.classList.add('visible');
+});
+
+const menuToggle = document.querySelector('.nav-toggle');
+const navigation = document.getElementById('pizza-navigation');
+const menuDropdown = document.querySelector('.menu-dropdown');
+const menuDropdownToggle = document.querySelector('.menu-dropdown-label');
+
+menuDropdownToggle.addEventListener('click', () => {
+  const isExpanded = menuDropdownToggle.getAttribute('aria-expanded') === 'true';
+  menuDropdownToggle.setAttribute('aria-expanded', String(!isExpanded));
+  menuDropdown.classList.toggle('open', !isExpanded);
+});
+
+menuToggle.addEventListener('click', () => {
+  const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+  menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+  menuToggle.setAttribute('aria-label', isExpanded ? 'Apri menu' : 'Chiudi menu');
+  menuToggle.closest('.nav').classList.toggle('menu-open', !isExpanded);
+});
+
+navigation.addEventListener('click', (event) => {
+  if (event.target.closest('a')) {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Apri menu');
+    menuToggle.closest('.nav').classList.remove('menu-open');
+    menuDropdownToggle.setAttribute('aria-expanded', 'false');
+    menuDropdown.classList.remove('open');
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
+
+  const navigationIsExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+  const dropdownIsExpanded = menuDropdownToggle.getAttribute('aria-expanded') === 'true';
+  menuDropdownToggle.setAttribute('aria-expanded', 'false');
+  menuDropdown.classList.remove('open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Apri menu');
+  menuToggle.closest('.nav').classList.remove('menu-open');
+
+  if (navigationIsExpanded) {
+    menuToggle.focus();
+  } else if (dropdownIsExpanded) {
+    menuDropdownToggle.focus();
+  }
+});
+
+document.addEventListener('click', (event) => {
+  if (!menuDropdown.contains(event.target)) {
+    menuDropdownToggle.setAttribute('aria-expanded', 'false');
+    menuDropdown.classList.remove('open');
+  }
+});
+</script>
+
 </body>
 
 </html>

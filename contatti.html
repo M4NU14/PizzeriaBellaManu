@@ -17,18 +17,25 @@
         <nav class="nav" aria-label="Navigazione principale">
             <a class="brand" href="index.html#home" aria-label="Pizzeria Bella Manu, vai alla home"><img
                     class="brand-logo" src="assets/logo-bella-manu.png" alt="Pizzeria Bella Manu"></a>
-            <div class="links">
-                <a href="index.html#home">Home</a>
+            <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false"
+                aria-controls="contact-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="links" id="contact-navigation">
+                <a href="index.html#home"><span class="nav-icon" aria-hidden="true">🏠</span>Home</a>
                 <div class="menu-dropdown">
-                    <span class="menu-dropdown-label" tabindex="0">Menu</span>
-                    <div class="menu-dropdown-links">
-                        <a href="menu/menupizze.html">Pizze</a>
-                        <a href="menu/menubibite.html">Bibite</a>
-                        <a href="menu/menudolci.html">Dolci</a>
+                    <button class="menu-dropdown-label" type="button" aria-expanded="false"
+                        aria-controls="menu-sections"><span class="nav-icon" aria-hidden="true">☰</span>Menu</button>
+                    <div class="menu-dropdown-links" id="menu-sections">
+                        <a href="menu/menupizze.html"><span class="menu-icon" aria-hidden="true">🍕</span>Pizze</a>
+                        <a href="menu/menubibite.html"><span class="menu-icon" aria-hidden="true">🥤</span>Bibite</a>
+                        <a href="menu/menudolci.html"><span class="menu-icon" aria-hidden="true">🍪</span>Dolci</a>
                     </div>
                 </div>
-                <a href="index.html#pizzeria">La pizzeria</a>
-                <a href="contatti.html" aria-current="page">Contatti</a>
+                <a href="index.html#pizzeria"><span class="nav-icon" aria-hidden="true">🍽️</span>La pizzeria</a>
+                <a href="contatti.html" aria-current="page"><span class="nav-icon" aria-hidden="true">📍</span>Contatti</a>
             </div>
             <a class="btn" href="#contatti">CONTATTACI</a>
         </nav>

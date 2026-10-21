@@ -18,18 +18,25 @@
         <nav class="nav" aria-label="Navigazione principale">
             <a class="brand" href="../index.html#home" aria-label="Pizzeria Bella Manu, vai alla home"><img
                     class="brand-logo" src="../assets/logo-bella-manu.png" alt="Pizzeria Bella Manu"></a>
-            <div class="links">
-                <a href="../index.html#home">Home</a>
+            <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false"
+                aria-controls="drinks-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="links" id="drinks-navigation">
+                <a href="../index.html#home"><span class="nav-icon" aria-hidden="true">🏠</span>Home</a>
                 <div class="menu-dropdown">
-                    <span class="menu-dropdown-label" tabindex="0">Menu</span>
-                    <div class="menu-dropdown-links">
-                        <a href="menupizze.html">Pizze</a>
-                        <a href="menubibite.html" aria-current="page">Bibite</a>
-                        <a href="menudolci.html">Dolci</a>
+                    <button class="menu-dropdown-label" type="button" aria-expanded="false"
+                        aria-controls="drinks-menu-sections"><span class="nav-icon" aria-hidden="true">☰</span>Menu</button>
+                    <div class="menu-dropdown-links" id="drinks-menu-sections">
+                        <a href="menupizze.html"><span class="menu-icon" aria-hidden="true">🍕</span>Pizze</a>
+                        <a href="menubibite.html" aria-current="page"><span class="menu-icon" aria-hidden="true">🥤</span>Bibite</a>
+                        <a href="menudolci.html"><span class="menu-icon" aria-hidden="true">🍪</span>Dolci</a>
                     </div>
                 </div>
-                <a href="../index.html#pizzeria">La pizzeria</a>
-                <a href="../contatti.html">Contatti</a>
+                <a href="../index.html#pizzeria"><span class="nav-icon" aria-hidden="true">🍽️</span>La pizzeria</a>
+                <a href="../contatti.html"><span class="nav-icon" aria-hidden="true">📍</span>Contatti</a>
             </div>
             <a class="btn" href="../contatti.html">CONTATTACI</a>
         </nav>
@@ -131,10 +138,64 @@
             <a class="btn" href="../contatti.html">CONTATTI E PRENOTAZIONI</a>
         </section>
     </main>
-    <a class="btn mobile-cta" href="../contatti.html">CONTATTI E PRENOTAZIONI</a>
     <footer><strong>PIZZERIA BELLA MANU</strong> · Fondi (LT)<br>© <span id="year"></span> Bella Manu. Tutti i diritti
         riservati.</footer>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const menuToggle = document.querySelector('.nav-toggle');
+        const navigation = document.getElementById('drinks-navigation');
+        const menuDropdown = document.querySelector('.menu-dropdown');
+        const menuDropdownToggle = document.querySelector('.menu-dropdown-label');
+
+        menuDropdownToggle.addEventListener('click', () => {
+            const isExpanded = menuDropdownToggle.getAttribute('aria-expanded') === 'true';
+            menuDropdownToggle.setAttribute('aria-expanded', String(!isExpanded));
+            menuDropdown.classList.toggle('open', !isExpanded);
+        });
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+            menuToggle.setAttribute('aria-label', isExpanded ? 'Apri menu' : 'Chiudi menu');
+            menuToggle.closest('.nav').classList.toggle('menu-open', !isExpanded);
+        });
+
+        navigation.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Apri menu');
+                menuToggle.closest('.nav').classList.remove('menu-open');
+                menuDropdownToggle.setAttribute('aria-expanded', 'false');
+                menuDropdown.classList.remove('open');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape') return;
+
+            const navigationIsExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            const dropdownIsExpanded = menuDropdownToggle.getAttribute('aria-expanded') === 'true';
+            menuDropdownToggle.setAttribute('aria-expanded', 'false');
+            menuDropdown.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Apri menu');
+            menuToggle.closest('.nav').classList.remove('menu-open');
+
+            if (navigationIsExpanded) {
+                menuToggle.focus();
+            } else if (dropdownIsExpanded) {
+                menuDropdownToggle.focus();
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!menuDropdown.contains(event.target)) {
+                menuDropdownToggle.setAttribute('aria-expanded', 'false');
+                menuDropdown.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 
 </html>

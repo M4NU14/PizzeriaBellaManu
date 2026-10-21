@@ -7,6 +7,7 @@
     <meta name="description" content="Contatti, indirizzo e orari della Pizzeria BELLA MANU a Fondi.">
     <meta name="theme-color" content="#173d2d">
     <title>Contatti | Pizzeria BELLA MANU</title>
+    <link rel="icon" type="image/png" href="assets/logo-bella-manu.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,20 +15,27 @@
     <div class="topbar">PIZZERIA BELLA MANU · FONDI</div>
     <header>
         <nav class="nav" aria-label="Navigazione principale">
-            <a class="brand" href="index.html#home"><span class="mark">🍕</span><span class="brandname">BELLA MANU<small>PIZZERIA
-                        · FONDI</small></span></a>
-            <div class="links">
-                <a href="index.html#home">Home</a>
+            <a class="brand" href="index.html#home" aria-label="Pizzeria Bella Manu, vai alla home"><img
+                    class="brand-logo" src="assets/logo-bella-manu.png" alt="Pizzeria Bella Manu"></a>
+            <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false"
+                aria-controls="contact-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="links" id="contact-navigation">
+                <a href="index.html#home"><span class="nav-icon" aria-hidden="true">🏠</span>Home</a>
                 <div class="menu-dropdown">
-                    <span class="menu-dropdown-label" tabindex="0">Menu</span>
-                    <div class="menu-dropdown-links">
-                        <a href="menu/menupizze.html">Pizze</a>
-                        <a href="menu/menubibite.html">Bibite</a>
-                        <a href="menu/menudolci.html">Dolci</a>
+                    <button class="menu-dropdown-label" type="button" aria-expanded="false"
+                        aria-controls="menu-sections"><span class="nav-icon" aria-hidden="true">☰</span>Menu</button>
+                    <div class="menu-dropdown-links" id="menu-sections">
+                        <a href="menu/menupizze.html"><span class="menu-icon" aria-hidden="true">🍕</span>Pizze</a>
+                        <a href="menu/menubibite.html"><span class="menu-icon" aria-hidden="true">🥤</span>Bibite</a>
+                        <a href="menu/menudolci.html"><span class="menu-icon" aria-hidden="true">🍪</span>Dolci</a>
                     </div>
                 </div>
-                <a href="index.html#pizzeria">La pizzeria</a>
-                <a href="contatti.html" aria-current="page">Contatti</a>
+                <a href="index.html#pizzeria"><span class="nav-icon" aria-hidden="true">🍽️</span>La pizzeria</a>
+                <a href="contatti.html" aria-current="page"><span class="nav-icon" aria-hidden="true">📍</span>Contatti</a>
             </div>
             <a class="btn" href="#contatti">CONTATTACI</a>
         </nav>
@@ -37,11 +45,60 @@
             <div class="contact-page-inner">
                 <div class="contact-intro">
                     <span class="contact-kicker"><span aria-hidden="true">✦</span> FATTO CON PASSIONE, A FONDI</span>
-                    <h1>La prossima<br>pizza ti aspetta.</h1>
-                    <p>Una tavola pronta, il profumo della pizza e il piacere di stare insieme. Qui trovi tutte le
-                        informazioni per venirci a trovare.</p>
+                    <h1>Siamo qui<br>per te.</h1>
+                    <p>Per informazioni, prenotazioni o eventi speciali, scrivici: saremo felici di aiutarti.</p>
                     <span class="contact-location"><span aria-hidden="true">📍</span> Fondi (LT)</span>
                 </div>
+                <section class="contact-form-panel" aria-labelledby="contact-form-title">
+                    <div class="contact-form-copy">
+                        <span class="contact-card-label">PARLIAMONE</span>
+                        <h2 id="contact-form-title">Come possiamo aiutarti?</h2>
+                        <p>Compila il modulo: si aprirà il tuo programma email con il messaggio pronto da inviare.</p>
+                        <div class="contact-form-promise">
+                            <span aria-hidden="true">✦</span>
+                            <span>Il messaggio viene inviato solo dopo la tua conferma nell'app email.</span>
+                        </div>
+                    </div>
+                    <form class="contact-form" action="mailto:prenotazioni@pizzeriabellamanu.com" method="post"
+                        enctype="text/plain">
+                        <div class="contact-form-fields">
+                            <div class="form-field">
+                                <label for="contact-name">Nome e cognome <span aria-hidden="true">*</span></label>
+                                <input id="contact-name" name="Nome e cognome" type="text" autocomplete="name"
+                                    placeholder="Come ti chiami?" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="contact-email">La tua email <span aria-hidden="true">*</span></label>
+                                <input id="contact-email" name="Email" type="email" autocomplete="email"
+                                    placeholder="nome@esempio.it" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="contact-phone">Telefono <span class="form-optional">Facoltativo</span></label>
+                                <input id="contact-phone" name="Telefono" type="tel" autocomplete="tel"
+                                    placeholder="Per ricontattarti">
+                            </div>
+                            <div class="form-field">
+                                <label for="contact-subject">Motivo del contatto <span aria-hidden="true">*</span></label>
+                                <select id="contact-subject" name="Motivo del contatto" required>
+                                    <option value="" selected disabled>Seleziona un argomento</option>
+                                    <option value="Prenotazione">Prenotazione</option>
+                                    <option value="Informazioni sul menu">Informazioni sul menu</option>
+                                    <option value="Feste ed eventi">Feste ed eventi</option>
+                                    <option value="Altro">Altro</option>
+                                </select>
+                            </div>
+                            <div class="form-field form-field--wide">
+                                <label for="contact-message">Il tuo messaggio <span aria-hidden="true">*</span></label>
+                                <textarea id="contact-message" name="Messaggio" rows="5"
+                                    placeholder="Scrivi qui come possiamo aiutarti..." required></textarea>
+                            </div>
+                        </div>
+                        <button class="btn contact-submit" type="submit">PREPARA IL MESSAGGIO <span
+                                aria-hidden="true">→</span></button>
+                        <p class="form-disclaimer">I campi contrassegnati con * sono obbligatori. Il sito non salva i dati
+                            inseriti.</p>
+                    </form>
+                </section>
                 <div class="contact-grid">
                     <article class="contact-card">
                         <div class="contact-icon" aria-hidden="true">📍</div>
@@ -76,7 +133,28 @@
     <a class="btn mobile-cta" href="#contatti">CONTATTI E PRENOTAZIONI</a>
     <footer><strong>PIZZERIA BELLA MANU</strong> · Fondi (LT)<br>© <span id="year"></span> Bella Manu. Tutti i diritti
         riservati.</footer>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const fields = new FormData(contactForm);
+            const subject = `Contatto dal sito - ${fields.get('Motivo del contatto')}`;
+            const message = [
+                `Nome e cognome: ${fields.get('Nome e cognome')}`,
+                `Email: ${fields.get('Email')}`,
+                `Telefono: ${fields.get('Telefono') || 'Non indicato'}`,
+                '',
+                'Messaggio:',
+                fields.get('Messaggio')
+            ].join('\n');
+            const mailto = new URL(contactForm.action);
+            mailto.searchParams.set('subject', subject);
+            mailto.searchParams.set('body', message);
+            window.location.href = mailto.href;
+        });
+    </script>
 </body>
 
 </html>

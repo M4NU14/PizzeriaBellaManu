@@ -1,11 +1,882 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Dolci | Pizzeria Bella Manu</title>
+
+    <meta name="description" content="Scopri i dolci di Pizzeria Bella Manu a Fondi.">
+
+    <link rel="stylesheet" href="dolci.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --red: #e9362b;
+            --dark: #241711;
+            --brown: #633820;
+            --cream: #fffaf4;
+            --text: #282828;
+            --gray: #666666;
+            --border: #e5ddd5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+
+        /* ==========================
+   HEADER E NAVIGAZIONE
+========================== */
+
+        .header {
+            height: 86px;
+            padding: 0 8.5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        .logo-text strong {
+            color: var(--red);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .navbar a {
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+
+        .navbar a:hover {
+            color: var(--red);
+        }
+
+        .contact-button {
+            padding: 15px 25px;
+            background: var(--red);
+            color: white;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: background 0.25s;
+        }
+
+        .contact-button:hover,
+        .button:hover {
+            background: #c92820;
+        }
+
+
+        /* ==========================
+   HERO PRINCIPALE
+========================== */
+
+        .hero {
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background:
+                linear-gradient(90deg,
+                    rgba(28, 16, 10, 0.88) 0%,
+                    rgba(28, 16, 10, 0.65) 42%,
+                    rgba(28, 16, 10, 0.05) 100%),
+                url("https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=2000&q=85") center 52% / cover no-repeat;
+        }
+
+        .hero-content {
+            width: 100%;
+            padding: 65px 8.5%;
+            color: white;
+        }
+
+        .eyebrow {
+            color: #f3c58c;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 5.2vw, 72px);
+            line-height: 1.08;
+            font-weight: 600;
+            max-width: 730px;
+            margin-bottom: 22px;
+        }
+
+        .hero-description {
+            font-size: 16px;
+            max-width: 550px;
+            margin-bottom: 26px;
+            color: #f4eee8;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 23px;
+            border-radius: 5px;
+            background: var(--red);
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            transition: background 0.25s, transform 0.25s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* ==========================
+   SEZIONE DESSERT
+========================== */
+
+        .desserts {
+            padding: 40px 8% 65px;
+            background: #fff;
+        }
+
+        .section-heading {
+            margin-bottom: 28px;
+        }
+
+        .section-label {
+            color: var(--red);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2,
+        .final-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 3vw, 42px);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .section-heading>p:last-child {
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+
+        /* ==========================
+   GRIGLIA DEI DOLCI
+========================== */
+
+        .dessert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .dessert-card {
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .dessert-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(40, 25, 15, 0.10);
+        }
+
+        .dessert-card>img {
+            width: 100%;
+            height: 175px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .card-content p {
+            color: var(--gray);
+            font-size: 13px;
+            line-height: 1.55;
+            min-height: 60px;
+        }
+
+        .price {
+            color: var(--red);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+
+        /* ==========================
+   BANNER FINALE
+========================== */
+
+        .final-section {
+            position: relative;
+            padding: 45px 8.5%;
+            color: white;
+            background:
+                linear-gradient(90deg,
+                    rgba(34, 18, 10, 0.88),
+                    rgba(54, 27, 13, 0.72)),
+                url("https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=1800&q=80") center / cover no-repeat;
+        }
+
+        .final-content {
+            max-width: 720px;
+        }
+
+        .final-content h2 {
+            margin-bottom: 10px;
+        }
+
+        .final-content>p:not(.section-label) {
+            color: #f0e5dc;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .final-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .button-outline {
+            background: transparent;
+            border: 1px solid white;
+        }
+
+        .button-outline:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+
+        /* ==========================
+   FOOTER
+========================== */
+
+        .footer {
+            padding: 22px 8.5%;
+            background: #171717;
+            color: white;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .footer-brand {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .footer-brand strong {
+            color: #f1b98a;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid white;
+            border-radius: 50%;
+            font-size: 15px;
+            font-weight: 700;
+            transition: background 0.2s;
+        }
+
+        .social-links a:hover {
+            background: var(--red);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 18px;
+            font-size: 11px;
+            color: #c8c8c8;
+        }
+
+        .footer-bottom a {
+            text-decoration: underline;
+        }
+
+
+        /* ==========================
+   TABLET
+========================== */
+
+        @media (max-width: 1000px) {
+
+            .header {
+                padding: 0 4%;
+                gap: 15px;
+            }
+
+            .navbar {
+                gap: 16px;
+            }
+
+            .navbar a {
+                font-size: 12px;
+            }
+
+            .contact-button {
+                padding: 12px 15px;
+            }
+
+            .desserts {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .dessert-grid {
+                gap: 15px;
+            }
+
+            .dessert-card>img {
+                height: 150px;
+            }
+
+        }
+
+
+        /* ==========================
+   SMARTPHONE
+========================== */
+
+        @media (max-width: 650px) {
+
+            .header {
+                height: auto;
+                min-height: 75px;
+                padding: 12px 18px;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .logo img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .logo-text {
+                font-size: 17px;
+            }
+
+            .contact-button {
+                font-size: 11px;
+                padding: 11px 13px;
+            }
+
+            .navbar {
+                order: 3;
+                width: 100%;
+                justify-content: space-between;
+                gap: 8px;
+                padding: 8px 0 3px;
+                border-top: 1px solid #eee;
+            }
+
+            .navbar a {
+                font-size: 11px;
+            }
+
+            .hero {
+                min-height: 430px;
+                background-position: 63% center;
+            }
+
+            .hero-content {
+                padding: 55px 22px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+                max-width: 340px;
+            }
+
+            .eyebrow {
+                font-size: 10px;
+                letter-spacing: 1.3px;
+            }
+
+            .button {
+                font-size: 11px;
+                padding: 13px 15px;
+            }
+
+            .desserts {
+                padding: 35px 18px 45px;
+            }
+
+            .section-heading h2 {
+                font-size: 30px;
+            }
+
+            .section-heading>p:last-child {
+                font-size: 13px;
+            }
+
+            .dessert-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 13px;
+            }
+
+            .dessert-card>img {
+                height: 125px;
+            }
+
+            .card-content {
+                padding: 11px;
+            }
+
+            .card-content h3 {
+                font-size: 17px;
+            }
+
+            .card-content p {
+                font-size: 12px;
+                min-height: 90px;
+            }
+
+            .price {
+                font-size: 14px;
+            }
+
+            .final-section {
+                padding: 38px 22px;
+            }
+
+            .final-content h2 {
+                font-size: 32px;
+            }
+
+            .final-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer {
+                padding: 22px 18px;
+            }
+
+            .footer-top {
+                align-items: flex-start;
+            }
+
+            .footer-brand {
+                font-size: 12px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+        }
+
+
+        /* SCHERMI MOLTO PICCOLI */
+
+        @media (max-width: 380px) {
+
+            .dessert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dessert-card>img {
+                height: 200px;
+            }
+
+            .card-content p {
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <a href="../index.html" class="logo">
+            <img src="../img/logo.png" alt="Logo Bella Manu" onerror="this.style.display='none'">
+            <span class="logo-text">
+                Bella <strong>Manu</strong>
+            </span>
+        </a>
+
+        <nav class="navbar">
+            <a href="../index.html">⌂ <span>Home</span></a>
+            <a href="../index.html#menu">☰ <span>Menu</span></a>
+            <a href="../index.html#pizzeria">♧ <span>La pizzeria</span></a>
+            <a href="../index.html#contatti">📍 <span>Contatti</span></a>
+        </nav>
+
+        <a href="../index.html#contatti" class="contact-button">
+            CONTATTACI
+        </a>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="eyebrow">
+                PIZZERIA BELLA MANU · FONDI
+            </p>
+
+            <h1>
+                Un dolce finale<br>
+                alla buona tavola.
+            </h1>
+
+            <p class="hero-description">
+                Il dessert giusto rende ancora più speciale
+                una pizza condivisa.
+            </p>
+
+            <a href="#dolci" class="button">
+                SCOPRI I NOSTRI DOLCI
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEZIONE DOLCI -->
+    <main id="dolci" class="desserts">
+
+        <div class="section-heading">
+
+            <p class="section-label">I NOSTRI DOLCI</p>
+
+            <h2>Il lato più dolce della serata.</h2>
+
+            <p>
+                Una selezione di dessert golosi, perfetti da
+                condividere o da assaporare fino all'ultimo cucchiaino.
+            </p>
+
+        </div>
+
+
+        <div class="dessert-grid">
+
+            <!-- DOLCE 1 -->
+            <article class="dessert-card">
+
+                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=700&q=80"
+                    alt="Tiramisù al cacao" loading="lazy">
+
+                <div class="card-content">
+
+                    <h3>Tiramisù</h3>
+
+                    <p>
+                        Mascarpone cremoso, savoiardi e una
+                        spolverata di cacao. Un grande classico italiano.
+                    </p>
+
+                    <div class="price">€ 5,00</div>
+
+                </div>
+
+            </article>
+
+
+            <!-- DOLCE 2 -->
+            <article class="dessert-card">
+
+                <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=700&q=80"
+                    alt="Cheesecake" loading="lazy">
+
+                <div class="card-content">
+
+                    <h3>Cheesecake</h3>
+
+                    <p>
+                        Una base croccante e una crema vellutata,
+                        per un dessert fresco e irresistibile.
+                    </p>
+
+                    <div class="price">€ 5,00</div>
+
+                </div>
+
+            </article>
+
+
+            <!-- DOLCE 3 -->
+            <article class="dessert-card">
+
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
+                    alt="Torta al cioccolato" loading="lazy">
+
+                <div class="card-content">
+
+                    <h3>Torta al cioccolato</h3>
+
+                    <p>
+                        Tutto il piacere del cioccolato in un dessert
+                        intenso, morbido e ricco di gusto.
+                    </p>
+
+                    <div class="price">€ 5,00</div>
+
+                </div>
+
+            </article>
+
+
+            <!-- DOLCE 4 -->
+            <article class="dessert-card">
+
+                <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80"
+                    alt="Panna cotta" loading="lazy">
+
+                <div class="card-content">
+
+                    <h3>Panna cotta</h3>
+
+                    <p>
+                        Delicata, morbida e avvolgente:
+                        una coccola dolce ideale per concludere la cena.
+                    </p>
+
+                    <div class="price">€ 4,50</div>
+
+                </div>
+
+            </article>
+
+
+            <!-- DOLCE 5 -->
+            <article class="dessert-card">
+
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=80"
+                    alt="Profiteroles al cioccolato" loading="lazy">
+
+                <div class="card-content">
+
+                    <h3>Profiteroles</h3>
+
+                    <p>
+                        Bignè golosi avvolti da una deliziosa
+                        copertura al cioccolato.
+                    </p>
+
+                    <div class="price">€ 5,00</div>
+
+                </div>
+
+            </article>
+
+
+            <!-- DOLCE 6 -->
+            <article class="dessert-card">
+
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=700&q=80"
+                    alt="Dolce del giorno" loading="lazy">
+
+                <div class="card-content">
+
+                    <h3>Dolce del giorno</h3>
+
+                    <p>
+                        Lasciati sorprendere dalla nostra proposta:
+                        chiedici quale dessert è disponibile oggi.
+                    </p>
+
+                    <div class="price">€ 5,00</div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </main>
+
+
+    <!-- SEZIONE FINALE -->
+    <section class="final-section">
+
+        <div class="final-content">
+
+            <p class="section-label">TI ASPETTIAMO A FONDI</p>
+
+            <h2>La dolcezza ti aspetta.</h2>
+
+            <p>
+                Vieni a trovarci in pizzeria per scoprire tutti
+                i nostri dolci e vivere un'esperienza di gusto unica.
+            </p>
+
+            <div class="final-buttons">
+
+                <a href="https://www.google.com/maps/search/?api=1&query=Pizzeria+Bella+Manu+Fondi" target="_blank"
+                    rel="noopener noreferrer" class="button">
+                    📍 COME RAGGIUNGERCI
+                </a>
+
+                <a href="../index.html" class="button button-outline">
+                    ⌂ TORNA ALLA HOME
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-top">
+
+            <a href="../index.html" class="footer-brand">
+                PIZZERIA <strong>BELLA MANU</strong> · FONDI
+            </a>
+
+            <div class="social-links">
+                <a href="https://www.facebook.com/" aria-label="Facebook">f</a>
+
+                <a href="https://www.instagram.com/" aria-label="Instagram">◎</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © <span id="year"></span> Pizzeria Bella Manu - Fondi (LT)
+            </p>
+
+            <a href="../index.html">Torna alla pagina principale</a>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
 </body>
+
 </html>

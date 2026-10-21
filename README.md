@@ -32,8 +32,10 @@ Il sito è realizzato con **HTML e CSS**, senza framework o dipendenze da instal
 
 Ogni contributo aiuta a rendere il sito più completo. Le assegnazioni iniziali delle sezioni sono:
 
-| Sviluppatore | Sezione |
-| Ruscitto Manuel | Manager |
-| Capodiferro Jasmine | Pizze |
-| Belba Aurora | Dolci |
-| Pernarella Mattia | Bibite |
+| Sviluppatore | Sezione |<br>
+| Ruscitto Manuel | Manager |<br>
+| Capodiferro Jasmine | Pizze |<br>
+| Belba Aurora | Dolci |<br>
+| Pernarella Mattia | Bibite |<br>
+
+

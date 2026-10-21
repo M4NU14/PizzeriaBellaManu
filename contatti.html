@@ -7,6 +7,7 @@
     <meta name="description" content="Contatti, indirizzo e orari della Pizzeria BELLA MANU a Fondi.">
     <meta name="theme-color" content="#173d2d">
     <title>Contatti | Pizzeria BELLA MANU</title>
+    <link rel="icon" type="image/png" href="assets/logo-bella-manu.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,20 +15,27 @@
     <div class="topbar">PIZZERIA BELLA MANU · FONDI</div>
     <header>
         <nav class="nav" aria-label="Navigazione principale">
-            <a class="brand" href="index.html#home"><span class="mark">🍕</span><span class="brandname">BELLA MANU<small>PIZZERIA
-                        · FONDI</small></span></a>
-            <div class="links">
-                <a href="index.html#home">Home</a>
+            <a class="brand" href="index.html#home" aria-label="Pizzeria Bella Manu, vai alla home"><img
+                    class="brand-logo" src="assets/logo-bella-manu.png" alt="Pizzeria Bella Manu"></a>
+            <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false"
+                aria-controls="contact-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="links" id="contact-navigation">
+                <a href="index.html#home"><span class="nav-icon" aria-hidden="true">🏠</span>Home</a>
                 <div class="menu-dropdown">
-                    <span class="menu-dropdown-label" tabindex="0">Menu</span>
-                    <div class="menu-dropdown-links">
-                        <a href="menu/menupizze.html">Pizze</a>
-                        <a href="menu/menubibite.html">Bibite</a>
-                        <a href="menu/menudolci.html">Dolci</a>
+                    <button class="menu-dropdown-label" type="button" aria-expanded="false"
+                        aria-controls="menu-sections"><span class="nav-icon" aria-hidden="true">☰</span>Menu</button>
+                    <div class="menu-dropdown-links" id="menu-sections">
+                        <a href="menu/menupizze.html"><span class="menu-icon" aria-hidden="true">🍕</span>Pizze</a>
+                        <a href="menu/menubibite.html"><span class="menu-icon" aria-hidden="true">🥤</span>Bibite</a>
+                        <a href="menu/menudolci.html"><span class="menu-icon" aria-hidden="true">🍪</span>Dolci</a>
                     </div>
                 </div>
-                <a href="index.html#pizzeria">La pizzeria</a>
-                <a href="contatti.html" aria-current="page">Contatti</a>
+                <a href="index.html#pizzeria"><span class="nav-icon" aria-hidden="true">🍽️</span>La pizzeria</a>
+                <a href="contatti.html" aria-current="page"><span class="nav-icon" aria-hidden="true">📍</span>Contatti</a>
             </div>
             <a class="btn" href="#contatti">CONTATTACI</a>
         </nav>
@@ -76,7 +84,64 @@
     <a class="btn mobile-cta" href="#contatti">CONTATTI E PRENOTAZIONI</a>
     <footer><strong>PIZZERIA BELLA MANU</strong> · Fondi (LT)<br>© <span id="year"></span> Bella Manu. Tutti i diritti
         riservati.</footer>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const menuToggle = document.querySelector('.nav-toggle');
+        const navigation = document.getElementById('contact-navigation');
+        const menuDropdown = document.querySelector('.menu-dropdown');
+        const menuDropdownToggle = document.querySelector('.menu-dropdown-label');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+            menuToggle.setAttribute('aria-label', isExpanded ? 'Apri menu' : 'Chiudi menu');
+            menuToggle.closest('.nav').classList.toggle('menu-open', !isExpanded);
+        });
+
+        menuDropdownToggle.addEventListener('click', () => {
+            const isExpanded = menuDropdownToggle.getAttribute('aria-expanded') === 'true';
+            menuDropdownToggle.setAttribute('aria-expanded', String(!isExpanded));
+            menuDropdown.classList.toggle('open', !isExpanded);
+        });
+
+        navigation.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Apri menu');
+                menuToggle.closest('.nav').classList.remove('menu-open');
+                menuDropdownToggle.setAttribute('aria-expanded', 'false');
+                menuDropdown.classList.remove('open');
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!menuDropdown.contains(event.target)) {
+                menuDropdownToggle.setAttribute('aria-expanded', 'false');
+                menuDropdown.classList.remove('open');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape') {
+                return;
+            }
+
+            const navigationIsExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            const dropdownIsExpanded = menuDropdownToggle.getAttribute('aria-expanded') === 'true';
+            menuDropdownToggle.setAttribute('aria-expanded', 'false');
+            menuDropdown.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Apri menu');
+            menuToggle.closest('.nav').classList.remove('menu-open');
+
+            if (navigationIsExpanded) {
+                menuToggle.focus();
+            } else if (dropdownIsExpanded) {
+                menuDropdownToggle.focus();
+            }
+        });
+    </script>
 </body>
 
 </html>

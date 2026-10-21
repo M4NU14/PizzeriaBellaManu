@@ -16,13 +16,14 @@
         rel="stylesheet">
     <style>
         :root {
-            --red: #e9362b;
-            --dark: #241711;
+            --red: #d94835;
+            --green: #173d2d;
+            --dark: #173d2d;
             --brown: #633820;
-            --cream: #fffaf4;
-            --text: #282828;
-            --gray: #666666;
-            --border: #e5ddd5;
+            --cream: #fff8eb;
+            --text: #20231f;
+            --gray: #6c716a;
+            --border: #e7dfd1;
         }
 
         * {
@@ -58,75 +59,208 @@
    HEADER E NAVIGAZIONE
 ========================== */
 
-        .header {
-            height: 86px;
-            padding: 0 8.5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-            background: #ffffff;
+        .topbar {
+            background: var(--green);
+            color: white;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: .84rem;
+            letter-spacing: .06em;
+        }
+
+        header {
+            background: var(--cream);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo {
+        .nav {
+            max-width: 1160px;
+            margin: auto;
+            padding: 15px 22px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
             flex-shrink: 0;
         }
 
-        .logo img {
-            width: 65px;
-            height: 65px;
+        .brand-logo {
+            display: block;
+            width: 84px;
+            height: 84px;
             object-fit: contain;
         }
 
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 19px;
-            font-weight: 600;
-        }
-
-        .logo-text strong {
-            color: var(--red);
-        }
-
-        .navbar {
+        .links {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 30px;
+            gap: 6px;
+            font-size: .92rem;
+            font-weight: 700;
         }
 
-        .navbar a {
-            font-size: 14px;
-            font-weight: 600;
+        .links > a,
+        .menu-dropdown-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 42px;
+            padding: 6px 10px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--green);
+            font: inherit;
             white-space: nowrap;
-            transition: color 0.2s;
+            cursor: pointer;
+            transition: background .2s ease, color .2s ease;
         }
 
-        .navbar a:hover {
+        .links > a:hover,
+        .links > a:focus-visible,
+        .menu-dropdown-label:hover,
+        .menu-dropdown-label:focus-visible {
+            background: #f5efe6;
             color: var(--red);
         }
 
-        .contact-button {
-            padding: 15px 25px;
-            background: var(--red);
-            color: white;
-            border-radius: 5px;
-            font-size: 13px;
-            font-weight: 700;
-            white-space: nowrap;
-            transition: background 0.25s;
+        .nav-icon,
+        .menu-icon {
+            display: inline-grid;
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            place-items: center;
+            border-radius: 50%;
+            background: #f7e9dd;
+            font-size: .88rem;
+            line-height: 1;
         }
 
-        .contact-button:hover,
-        .button:hover {
-            background: #c92820;
+        .nav-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            padding: 10px;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--green);
+        }
+
+        .nav-toggle:focus-visible,
+        .menu-dropdown-label:focus-visible,
+        .links a:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 3px;
+        }
+
+        .menu-dropdown {
+            position: relative;
+        }
+
+        .menu-dropdown-label::after {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid var(--red);
+            border-bottom: 2px solid var(--red);
+            transform: rotate(45deg) translateY(-2px);
+            transition: transform .2s ease;
+        }
+
+        .menu-dropdown.open .menu-dropdown-label::after {
+            transform: rotate(225deg) translateY(-2px);
+        }
+
+        .menu-dropdown-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 25;
+            min-width: 180px;
+            gap: 4px;
+            padding: 8px;
+            border: 1px solid #eee5d6;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 14px 28px rgba(23, 61, 45, .14);
+        }
+
+        .menu-dropdown.open .menu-dropdown-links {
+            display: flex;
+        }
+
+        .menu-dropdown-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 7px;
+            color: var(--green);
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .menu-dropdown-links a:hover,
+        .menu-dropdown-links a:focus-visible {
+            transform: translateX(2px);
+            background: #f5efe6;
+            color: var(--red);
+        }
+
+        .menu-dropdown-links .menu-icon {
+            order: -1;
+        }
+
+        @media (min-width: 801px) {
+            .menu-dropdown-label::after {
+                display: none;
+            }
+
+            .menu-dropdown:hover .menu-dropdown-links,
+            .menu-dropdown:focus-within .menu-dropdown-links {
+                display: flex;
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            flex-shrink: 0;
+            padding: 12px 19px;
+            background: var(--red);
+            border: 2px solid var(--red);
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: .9rem;
+            letter-spacing: .03em;
+            white-space: nowrap;
+            transition: background .2s ease, border-color .2s ease;
+        }
+
+        .btn:hover {
+            background: #bd3928;
+            border-color: #bd3928;
         }
 
 
@@ -141,9 +275,9 @@
             position: relative;
             background:
                 linear-gradient(90deg,
-                    rgba(28, 16, 10, 0.88) 0%,
-                    rgba(28, 16, 10, 0.65) 42%,
-                    rgba(28, 16, 10, 0.05) 100%),
+                    rgba(10, 25, 17, 0.88) 0%,
+                    rgba(10, 25, 17, 0.65) 42%,
+                    rgba(10, 25, 17, 0.05) 100%),
                 url("https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=2000&q=85") center 52% / cover no-repeat;
         }
 
@@ -215,8 +349,7 @@
             margin-bottom: 8px;
         }
 
-        .section-heading h2,
-        .final-content h2 {
+        .section-heading h2 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(30px, 3vw, 42px);
             line-height: 1.2;
@@ -243,13 +376,14 @@
             overflow: hidden;
             background: #fff;
             border: 1px solid var(--border);
-            border-radius: 5px;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(23, 61, 45, .06);
             transition: transform 0.25s, box-shadow 0.25s;
         }
 
         .dessert-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(40, 25, 15, 0.10);
+            box-shadow: 0 12px 28px rgba(23, 61, 45, .12);
         }
 
         .dessert-card>img {
@@ -283,114 +417,55 @@
         }
 
 
-        /* ==========================
-   BANNER FINALE
-========================== */
-
-        .final-section {
-            position: relative;
-            padding: 45px 8.5%;
-            color: white;
-            background:
-                linear-gradient(90deg,
-                    rgba(34, 18, 10, 0.88),
-                    rgba(54, 27, 13, 0.72)),
-                url("https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=1800&q=80") center / cover no-repeat;
-        }
-
-        .final-content {
-            max-width: 720px;
-        }
-
-        .final-content h2 {
-            margin-bottom: 10px;
-        }
-
-        .final-content>p:not(.section-label) {
-            color: #f0e5dc;
-            font-size: 14px;
-            margin-bottom: 22px;
-        }
-
-        .final-buttons {
+        .contact-invitation {
             display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            max-width: 1116px;
+            margin: 48px auto 0;
+            padding: 34px 42px;
+            border-radius: 12px;
+            background: var(--green);
+            color: white;
         }
 
-        .button-outline {
-            background: transparent;
-            border: 1px solid white;
+        .contact-invitation .contact-kicker {
+            color: #f2c4a2;
+            font-size: .74rem;
+            font-weight: bold;
+            letter-spacing: .16em;
         }
 
-        .button-outline:hover {
-            background: white;
-            color: var(--dark);
+        .contact-invitation h2 {
+            margin: 8px 0;
+            color: white;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
         }
 
+        .contact-invitation p {
+            margin: 0;
+            color: #d8e0d9;
+        }
+
+        .contact-invitation .btn {
+            flex: 0 0 auto;
+        }
 
         /* ==========================
    FOOTER
 ========================== */
 
-        .footer {
-            padding: 22px 8.5%;
-            background: #171717;
+        footer {
+            background: #10291e;
+            color: #cbd5ce;
+            text-align: center;
+            padding: 24px;
+            font-size: .86rem;
+        }
+
+        footer strong {
             color: white;
-        }
-
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-        }
-
-        .footer-brand {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .footer-brand strong {
-            color: #f1b98a;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 12px;
-        }
-
-        .social-links a {
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid white;
-            border-radius: 50%;
-            font-size: 15px;
-            font-weight: 700;
-            transition: background 0.2s;
-        }
-
-        .social-links a:hover {
-            background: var(--red);
-        }
-
-        .footer-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            padding-top: 18px;
-            font-size: 11px;
-            color: #c8c8c8;
-        }
-
-        .footer-bottom a {
-            text-decoration: underline;
         }
 
 
@@ -399,23 +474,6 @@
 ========================== */
 
         @media (max-width: 1000px) {
-
-            .header {
-                padding: 0 4%;
-                gap: 15px;
-            }
-
-            .navbar {
-                gap: 16px;
-            }
-
-            .navbar a {
-                font-size: 12px;
-            }
-
-            .contact-button {
-                padding: 12px 15px;
-            }
 
             .desserts {
                 padding-left: 5%;
@@ -438,41 +496,6 @@
 ========================== */
 
         @media (max-width: 650px) {
-
-            .header {
-                height: auto;
-                min-height: 75px;
-                padding: 12px 18px;
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
-
-            .logo img {
-                width: 48px;
-                height: 48px;
-            }
-
-            .logo-text {
-                font-size: 17px;
-            }
-
-            .contact-button {
-                font-size: 11px;
-                padding: 11px 13px;
-            }
-
-            .navbar {
-                order: 3;
-                width: 100%;
-                justify-content: space-between;
-                gap: 8px;
-                padding: 8px 0 3px;
-                border-top: 1px solid #eee;
-            }
-
-            .navbar a {
-                font-size: 11px;
-            }
 
             .hero {
                 min-height: 430px;
@@ -540,35 +563,94 @@
                 font-size: 14px;
             }
 
-            .final-section {
-                padding: 38px 22px;
-            }
+        }
 
-            .final-content h2 {
-                font-size: 32px;
-            }
-
-            .final-buttons {
+        @media (max-width: 800px) {
+            .contact-invitation {
+                margin: 36px 20px 0;
+                padding: 28px;
                 flex-direction: column;
                 align-items: flex-start;
             }
 
-            .footer {
-                padding: 22px 18px;
+            .nav {
+                flex-wrap: wrap;
             }
 
-            .footer-top {
-                align-items: flex-start;
+            .nav-toggle {
+                display: flex;
             }
 
-            .footer-brand {
-                font-size: 12px;
-            }
-
-            .footer-bottom {
+            .nav .links {
+                display: none;
+                order: 3;
+                width: 100%;
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+                align-items: stretch;
+                gap: 5px;
+                margin-top: 10px;
+                padding: 10px;
+                border: 1px solid #eee5d6;
+                border-radius: 12px;
+                background: #fffdf7;
+                box-shadow: 0 10px 24px rgba(23, 61, 45, .08);
+            }
+
+            .nav.menu-open .links {
+                display: flex;
+            }
+
+            .nav .links > a,
+            .nav .menu-dropdown-label {
+                display: flex;
+                width: 100%;
+                min-height: 44px;
+                padding: 9px 10px;
+                border-radius: 8px;
+                background: #fff;
+                text-align: left;
+            }
+
+            .nav .menu-dropdown-label::after {
+                margin-left: auto;
+            }
+
+            .nav .menu-dropdown.open .menu-dropdown-label {
+                background: #f5efe6;
+                color: var(--red);
+            }
+
+            .nav .menu-dropdown.open .menu-dropdown-links {
+                display: flex;
+                position: static;
+                min-width: 0;
+                gap: 5px;
+                margin: 6px 0 8px 10px;
+                padding: 8px;
+                border-left: 3px solid var(--red);
+                background: #fffdf7;
+                box-shadow: 0 8px 20px rgba(23, 61, 45, .08);
+            }
+
+            .nav .menu-dropdown-links a {
+                padding: 9px 10px;
+                background: #fff;
+            }
+
+            .nav > .btn {
+                display: none;
+            }
+
+            .nav .nav-icon,
+            .nav .menu-icon {
+                width: 30px;
+                height: 30px;
+                flex-basis: 30px;
+                font-size: .95rem;
+            }
+
+            .nav .menu-dropdown-links .menu-icon {
+                order: -1;
             }
 
         }
@@ -599,28 +681,34 @@
 </head>
 
 <body>
-
-    <!-- HEADER -->
-    <header class="header">
-
-        <a href="../index.html" class="logo">
-            <img src="../img/logo.png" alt="Logo Bella Manu" onerror="this.style.display='none'">
-            <span class="logo-text">
-                Bella <strong>Manu</strong>
-            </span>
-        </a>
-
-        <nav class="navbar">
-            <a href="../index.html">⌂ <span>Home</span></a>
-            <a href="../index.html#menu">☰ <span>Menu</span></a>
-            <a href="../index.html#pizzeria">♧ <span>La pizzeria</span></a>
-            <a href="../index.html#contatti">📍 <span>Contatti</span></a>
+    <div class="topbar">PIZZERIA BELLA MANU · FONDI</div>
+    <header>
+        <nav class="nav" aria-label="Navigazione principale">
+            <a class="brand" href="../index.html#home" aria-label="Pizzeria Bella Manu, vai alla home">
+                <img class="brand-logo" src="../assets/logo-bella-manu.png" alt="Pizzeria Bella Manu">
+            </a>
+            <button class="nav-toggle" type="button" aria-label="Apri menu" aria-expanded="false"
+                aria-controls="dessert-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="links" id="dessert-navigation">
+                <a href="../index.html#home"><span class="nav-icon" aria-hidden="true">🏠</span>Home</a>
+                <div class="menu-dropdown">
+                    <button class="menu-dropdown-label" type="button" aria-expanded="false"
+                        aria-controls="dessert-menu-sections"><span class="nav-icon" aria-hidden="true">☰</span>Menu</button>
+                    <div class="menu-dropdown-links" id="dessert-menu-sections">
+                        <a href="menupizze.html"><span class="menu-icon" aria-hidden="true">🍕</span>Pizze</a>
+                        <a href="menubibite.html"><span class="menu-icon" aria-hidden="true">🥤</span>Bibite</a>
+                        <a href="menudolci.html" aria-current="page"><span class="menu-icon" aria-hidden="true">🍪</span>Dolci</a>
+                    </div>
+                </div>
+                <a href="../index.html#pizzeria"><span class="nav-icon" aria-hidden="true">🍽️</span>La pizzeria</a>
+                <a href="../contatti.html"><span class="nav-icon" aria-hidden="true">📍</span>Contatti</a>
+            </div>
+            <a class="btn" href="../contatti.html">CONTATTACI</a>
         </nav>
-
-        <a href="../index.html#contatti" class="contact-button">
-            CONTATTACI
-        </a>
-
     </header>
 
 
@@ -804,74 +892,76 @@
 
         </div>
 
+    <section class="contact-invitation">
+        <div>
+            <span class="contact-kicker">IL GUSTO DELLA CONDIVISIONE</span>
+            <h2>La dolcezza ti aspetta.</h2>
+            <p>Vieni a trovarci a Fondi e chiedici quali dessert sono disponibili.</p>
+        </div>
+        <a class="btn" href="../contatti.html">CONTATTI E PRENOTAZIONI</a>
+    </section>
     </main>
 
-
-    <!-- SEZIONE FINALE -->
-    <section class="final-section">
-
-        <div class="final-content">
-
-            <p class="section-label">TI ASPETTIAMO A FONDI</p>
-
-            <h2>La dolcezza ti aspetta.</h2>
-
-            <p>
-                Vieni a trovarci in pizzeria per scoprire tutti
-                i nostri dolci e vivere un'esperienza di gusto unica.
-            </p>
-
-            <div class="final-buttons">
-
-                <a href="https://www.google.com/maps/search/?api=1&query=Pizzeria+Bella+Manu+Fondi" target="_blank"
-                    rel="noopener noreferrer" class="button">
-                    📍 COME RAGGIUNGERCI
-                </a>
-
-                <a href="../index.html" class="button button-outline">
-                    ⌂ TORNA ALLA HOME
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer class="footer">
-
-        <div class="footer-top">
-
-            <a href="../index.html" class="footer-brand">
-                PIZZERIA <strong>BELLA MANU</strong> · FONDI
-            </a>
-
-            <div class="social-links">
-                <a href="https://www.facebook.com/" aria-label="Facebook">f</a>
-
-                <a href="https://www.instagram.com/" aria-label="Instagram">◎</a>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-
-            <p>
-                © <span id="year"></span> Pizzeria Bella Manu - Fondi (LT)
-            </p>
-
-            <a href="../index.html">Torna alla pagina principale</a>
-
-        </div>
-
-    </footer>
+    <footer><strong>PIZZERIA BELLA MANU</strong> · Fondi (LT)<br>© <span id="year"></span> Bella Manu. Tutti i diritti
+        riservati.</footer>
 
 
     <script>
         document.getElementById("year").textContent =
             new Date().getFullYear();
+
+        const menuToggle = document.querySelector(".nav-toggle");
+        const navigation = document.getElementById("dessert-navigation");
+        const menuDropdown = document.querySelector(".menu-dropdown");
+        const menuDropdownToggle = document.querySelector(".menu-dropdown-label");
+
+        menuDropdownToggle.addEventListener("click", () => {
+            const isExpanded = menuDropdownToggle.getAttribute("aria-expanded") === "true";
+            menuDropdownToggle.setAttribute("aria-expanded", String(!isExpanded));
+            menuDropdown.classList.toggle("open", !isExpanded);
+        });
+
+        menuToggle.addEventListener("click", () => {
+            const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+            menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+            menuToggle.setAttribute("aria-label", isExpanded ? "Apri menu" : "Chiudi menu");
+            menuToggle.closest(".nav").classList.toggle("menu-open", !isExpanded);
+        });
+
+        navigation.addEventListener("click", (event) => {
+            if (event.target.closest("a")) {
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Apri menu");
+                menuToggle.closest(".nav").classList.remove("menu-open");
+                menuDropdownToggle.setAttribute("aria-expanded", "false");
+                menuDropdown.classList.remove("open");
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key !== "Escape") return;
+
+            const navigationIsExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+            const dropdownIsExpanded = menuDropdownToggle.getAttribute("aria-expanded") === "true";
+            menuDropdownToggle.setAttribute("aria-expanded", "false");
+            menuDropdown.classList.remove("open");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Apri menu");
+            menuToggle.closest(".nav").classList.remove("menu-open");
+
+            if (navigationIsExpanded) {
+                menuToggle.focus();
+            } else if (dropdownIsExpanded) {
+                menuDropdownToggle.focus();
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!menuDropdown.contains(event.target)) {
+                menuDropdownToggle.setAttribute("aria-expanded", "false");
+                menuDropdown.classList.remove("open");
+            }
+        });
     </script>
 
 </body>

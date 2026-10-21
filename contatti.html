@@ -154,6 +154,61 @@
             mailto.searchParams.set('body', message);
             window.location.href = mailto.href;
         });
+
+        const menuToggle = document.querySelector('.nav-toggle');
+        const navigation = document.getElementById('contact-navigation');
+        const menuDropdown = document.querySelector('.menu-dropdown');
+        const menuDropdownToggle = document.querySelector('.menu-dropdown-label');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+            menuToggle.setAttribute('aria-label', isExpanded ? 'Apri menu' : 'Chiudi menu');
+            menuToggle.closest('.nav').classList.toggle('menu-open', !isExpanded);
+        });
+
+        menuDropdownToggle.addEventListener('click', () => {
+            const isExpanded = menuDropdownToggle.getAttribute('aria-expanded') === 'true';
+            menuDropdownToggle.setAttribute('aria-expanded', String(!isExpanded));
+            menuDropdown.classList.toggle('open', !isExpanded);
+        });
+
+        navigation.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Apri menu');
+                menuToggle.closest('.nav').classList.remove('menu-open');
+                menuDropdownToggle.setAttribute('aria-expanded', 'false');
+                menuDropdown.classList.remove('open');
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!menuDropdown.contains(event.target)) {
+                menuDropdownToggle.setAttribute('aria-expanded', 'false');
+                menuDropdown.classList.remove('open');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape') {
+                return;
+            }
+
+            const navigationIsExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            const dropdownIsExpanded = menuDropdownToggle.getAttribute('aria-expanded') === 'true';
+            menuDropdownToggle.setAttribute('aria-expanded', 'false');
+            menuDropdown.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Apri menu');
+            menuToggle.closest('.nav').classList.remove('menu-open');
+
+            if (navigationIsExpanded) {
+                menuToggle.focus();
+            } else if (dropdownIsExpanded) {
+                menuDropdownToggle.focus();
+            }
+        });
     </script>
 </body>
 
